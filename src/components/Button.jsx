@@ -1,9 +1,15 @@
 import React from "react";
 
+
 const Button = ({ title, isPrimary }) => {
-  const styles = isPrimary ? "" : "";
   return (
-    <button className="px-6 py-2 bg-primary-purple rounded-md">{title}</button>
+    <button
+      className={`text-sm font-medium px-6 py-2 rounded-md ${
+        isPrimary ? "bg-primary-purple" : "border-2"
+      }`}
+    >
+      {title}
+    </button>
   );
 };
 
