@@ -21,7 +21,9 @@ const Sidebar = () => {
           <Link
             key={link.title}
             href={link.route}
-            className="flex gap-5 items-center p-3 rounded-md mb-3 transition-colors font-medium hover:bg-hover-bg"
+            className={`${
+              pathname === link.route && "bg-hover-bg"
+            } flex gap-5 items-center p-3 rounded-md mb-3 transition-colors font-medium hover:bg-hover-bg`}
           >
             {link.icon}
             {link.title}
