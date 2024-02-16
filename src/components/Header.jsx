@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+
+import Button from "./Button";
 
 const Header = () => {
   return (
-    <div>Header</div>
-  )
-}
+    <header className="flex w-full">
+      <Button title={"Add new project"} />
+    </header>
+  );
+};
 
-export default Header
+export default Header;
