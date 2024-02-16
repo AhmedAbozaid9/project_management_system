@@ -11,9 +11,11 @@ const Sidebar = () => {
 
   return (
     <aside className="bg-main-dark-bg flex flex-col min-h-screen p-6 ">
-      <h1 className="text-primary-purple font-semibold text-2xl mb-6  ">
-        Project manager
-      </h1>
+      <Link href="/">
+        <h1 className="text-primary-purple font-semibold text-2xl mb-6  ">
+          Project manager
+        </h1>
+      </Link>
       <div className="flex flex-col h-full w-full flex-1">
         {links.map((link) => (
           <Link
