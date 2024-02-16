@@ -1,11 +1,15 @@
 import React from "react";
 
-const InfoCard = ({ title, number }) => {
+const InfoCard = ({ number, title, color, icon }) => {
   return (
-    <div>
-      <p>{title}</p>
-      <span>{number}</span>
-      <p>Projects</p>
+    <div className="flex flex-col flex-1 bg-main-dark-bg p-5 rounded-lg">
+      <p className="text-secondary-text text-sm pb-3">{title}</p>
+      <div className="flex justify-between items-center ">
+        <p style={{ color }} className="text-xl font-semibold">
+          {number} Projects
+        </p>
+        {icon}
+      </div>
     </div>
   );
 };

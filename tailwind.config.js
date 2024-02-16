@@ -14,6 +14,7 @@ module.exports = {
         "pastel-pink": "#ED74BD",
         "main-dark-bg": "#151419",
         "hover-bg": "rgba(36,35,42,0.6)",
+        "secondary-text": "#B3B3B3",
       },
     },
   },
