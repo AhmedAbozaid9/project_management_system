@@ -10,7 +10,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-main-dark-bg flex flex-col min-h-screen p-6 ">
+    <aside className="bg-main-dark-bg md:flex flex-col min-h-screen p-6 hidden">
       <Link href="/">
         <h1 className="text-primary-purple font-semibold text-2xl mb-6  ">
           Project manager

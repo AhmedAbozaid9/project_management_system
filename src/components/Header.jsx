@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <header className="flex gap-3 w-full">
+    <header className="flex gap-3 w-full items-center">
       <Button title={"Add new project"} action={addProject} />
       <Button
         title={"Visit portfolio"}

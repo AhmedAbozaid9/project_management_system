@@ -4,7 +4,7 @@ const Button = ({ title, isPrimary, action }) => {
   return (
     <button
       onClick={action}
-      className={`text-sm font-medium px-6 py-2 rounded-md ${
+      className={`text-sm font-medium p-2 sm:px-6 rounded-md ${
         isPrimary ? "bg-primary-purple" : "border-2"
       }`}
     >
