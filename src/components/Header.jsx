@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import { FaUserCircle } from "react-icons/fa";
-
-import Button from "./Button";
+import { Button } from "@nextui-org/react";
+import { Checkbox, Chip } from "@nextui-org/react";
 
 const Header = () => {
   const openPortfolio = () => {
@@ -15,12 +15,8 @@ const Header = () => {
 
   return (
     <header className="flex gap-3 w-full items-center">
-      <Button title={"Add new project"} action={addProject} />
-      <Button
-        title={"Visit portfolio"}
-        isPrimary={false}
-        action={openPortfolio}
-      />
+      <Button >Hello world</Button>
+
       <FaUserCircle size={26} className="ml-auto" />
     </header>
   );

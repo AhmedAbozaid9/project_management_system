@@ -1,3 +1,6 @@
+"use client";
+import { NextUIProvider } from "@nextui-org/react";
+
 import InfoCard from "@/components/InfoCard";
 
 import { info_cards } from "@/constants";
