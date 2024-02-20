@@ -4,6 +4,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import InfoCard from "@/components/InfoCard";
 
 import { info_cards } from "@/constants";
+import ProjectsTable from "@/components/ProjectsTable";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <ProjectsTable />
     </main>
   );
 }
