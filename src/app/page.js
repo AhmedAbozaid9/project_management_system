@@ -9,7 +9,7 @@ import ProjectsTable from "@/components/ProjectsTable";
 export default function Home() {
   return (
     <main className="flex flex-1 w-full flex-col items-center">
-      <div className="flex items-center flex-col sm:flex-row min-w-full gap-5 py-6">
+      <div className="flex items-center flex-col sm:flex-row min-w-full gap-5 py-5">
         {info_cards.map((info_card) => (
           <InfoCard key={info_card.title} {...info_card} number={5} />
         ))}

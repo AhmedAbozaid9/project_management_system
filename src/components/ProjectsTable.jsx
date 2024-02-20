@@ -66,12 +66,12 @@ const ProjectsTable = () => {
   ];
 
   return (
-    <div className="pt-6 w-full">
+    <div className="pt-5 w-full">
       <Table
         aria-label="Projects"
         selectionMode="single"
         classNames={{
-          wrapper: ["bg-main-dark-bg"],
+          wrapper: ["bg-main-dark-bg", "rounded-md"],
           th: ["bg-transparent", "border-b", "border-divider"],
         }}
       >
