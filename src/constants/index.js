@@ -37,3 +37,39 @@ export const info_cards = [
     icon: <LuGoal size={28} />,
   },
 ];
+
+export const columns = [
+  {
+    key: "name",
+    label: "Name",
+  },
+
+  {
+    key: "tech",
+    label: "Tech",
+  },
+  {
+    key: "type",
+    label: "Type",
+  },
+  {
+    key: "year",
+    label: "Year",
+  },
+  {
+    key: "github",
+    label: "Github",
+  },
+  {
+    key: "status",
+    label: "Status",
+  },
+  {
+    key: "progress",
+    label: "Progress",
+  },
+  {
+    key: "actions",
+    label: "Actions",
+  },
+];
