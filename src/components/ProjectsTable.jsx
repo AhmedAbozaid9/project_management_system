@@ -66,7 +66,7 @@ const ProjectsTable = () => {
   ];
 
   return (
-    <div className="pt-5 w-full">
+    <div className="pt-5 w-full overflow-x-hidden">
       <Table
         aria-label="Projects"
         selectionMode="single"
