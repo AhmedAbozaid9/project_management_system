@@ -10,7 +10,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <>
+    <div className="flex flex-col justify-between h-screen">
       <Link href="/">
         <h1 className="text-primary-purple font-semibold text-2xl mb-6  ">
           Project manager
@@ -34,7 +34,7 @@ const Sidebar = () => {
           Login
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
