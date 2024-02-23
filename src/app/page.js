@@ -14,7 +14,7 @@ export default function Home() {
           <InfoCard key={info_card.title} {...info_card} number={5} />
         ))}
       </div>
-      <div className="flex gap-5 w-full">
+      <div className="flex gap-5 w-full max-sm:flex-col">
         <div className="flex flex-col justify-center basis-[66.2%] bg-main-dark-bg rounded-lg p-5">
           <h2 className="font-md">Daily Activity :</h2>
         </div>
