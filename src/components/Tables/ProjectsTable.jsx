@@ -108,7 +108,7 @@ const ProjectsTable = () => {
   return (
     <div className="pt-5 w-full overflow-x-hidden">
       <Table
-        aria-label="Projects"
+        area-label="Projects table"
         selectionMode="single"
         classNames={{
           wrapper: ["bg-main-dark-bg", "rounded-md"],

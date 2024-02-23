@@ -10,13 +10,13 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col justify-between h-screen">
+    <div className="flex flex-col justify-between h-screen p-6">
       <Link href="/">
-        <h1 className="text-primary-purple font-semibold text-2xl mb-6  ">
+        <h1 className="text-primary-purple font-semibold text-2xl mb-6 max-md:hidden">
           Project manager
         </h1>
       </Link>
-      <div className="flex flex-col h-full w-full flex-1">
+      <div className="flex flex-col h-full w-full flex-1 max-md:mt-12">
         {links.map((link) => (
           <Link
             key={link.title}
