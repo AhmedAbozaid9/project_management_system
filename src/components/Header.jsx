@@ -18,8 +18,8 @@ const Header = () => {
   return (
     <header className="flex gap-3 w-full items-center justify-stretch">
       <MobileNavigation />
-      <Button className="bg-primary-purple my-1" radius="sm">
-        Add New Project
+      <Button className="bg-primary-purple my-1 font-medium" radius="sm">
+        Add New
       </Button>
       <Button
         variant="bordered"
