@@ -10,7 +10,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col justify-between h-screen p-6">
+    <div className="flex flex-col justify-between h-screen p-6 drop-shadow-md">
       <Link href="/">
         <h1 className="text-primary-purple font-semibold text-2xl mb-6 max-md:hidden">
           Project manager
