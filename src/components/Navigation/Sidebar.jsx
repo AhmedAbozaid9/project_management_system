@@ -6,7 +6,7 @@ import { IoIosLogIn } from "react-icons/io";
 import { links } from "@/constants";
 import { usePathname } from "next/navigation";
 
-const Sidebar = () => {
+const Sidebar = ({ setIsOpen }) => {
   const pathname = usePathname();
 
   return (
@@ -21,6 +21,7 @@ const Sidebar = () => {
           <Link
             key={link.title}
             href={link.route}
+            onClick={() => setIsOpen && setIsOpen(false)}
             className={`${
               pathname === link.route && "bg-hover-bg"
             } flex gap-5 items-center p-3 rounded-md mb-3 transition-colors font-medium hover:bg-hover-bg`}

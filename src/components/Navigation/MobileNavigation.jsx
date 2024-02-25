@@ -14,6 +14,10 @@ const MobileNavigation = () => {
 
   return (
     <div className="md:hidden relative">
+      <div
+        className="absolute top-0 left-0 w-screen h-screen z-10"
+        onClick={() => setIsOpen(false)}
+      />
       <span className={`z-50 ${isOpen ? "fixed top-6 left-6" : "relative"}`}>
         <Hamburger toggled={isOpen} toggle={setIsOpen} />
       </span>
@@ -27,7 +31,7 @@ const MobileNavigation = () => {
             transition={{ duration: 0.1 }}
             variants={variants}
           >
-            <Sidebar />
+            <Sidebar setIsOpen={setIsOpen} />
           </motion.div>
         )}
       </AnimatePresence>
