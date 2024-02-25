@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -7,15 +7,31 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
 } from "@nextui-org/react";
+import Image from "next/image";
 
 import Select from "./Select";
 
 const MyModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const [image, setImage] = useState("");
+  const imageRef = useRef(null);
+
+  const handleImageChange = () => {
+    const file = imageRef.current.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setImage(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
 
   const uploadImage = () => {
     console.log("nyaaaaaaaaa");
@@ -24,7 +40,7 @@ const MyModal = () => {
   return (
     <>
       <Button
-        onPress={onOpen}
+        onClick={onOpen}
         className="bg-primary-purple my-1 font-medium"
         radius="sm"
       >
@@ -66,16 +82,28 @@ const MyModal = () => {
                       placeholder="Enter the link to the repo containing the code"
                       variant="bordered"
                     />
-                    <Button
-                      onPress={uploadImage}
-                      className="font-medium"
-                      radius="sm"
+                    <Input
+                      ref={imageRef}
+                      type="file"
                       variant="bordered"
-                    >
-                      Upload image
-                    </Button>
+                      accept="image/x-png,image/gif,image/jpeg"
+                      className="file-input"
+                      onChange={handleImageChange}
+                    />
                   </div>
-                  <div className="w-full max-w-96 h-72 bg-gray-500"></div>
+                  {image ? (
+                    <div className="relative w-full max-w-96 h-72">
+                      <Image
+                        alt="project thumbnail"
+                        width={384}
+                        height={384}
+                        src={image}
+                        className="w-full "
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-full max-w-96 h-72 bg-gray-500"></div>
+                  )}
                 </div>
               </ModalBody>
               <ModalFooter>
