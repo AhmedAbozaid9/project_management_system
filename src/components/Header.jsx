@@ -4,6 +4,8 @@ import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
+
+import Modal from "./Modal";
 import MobileNavigation from "./Navigation/MobileNavigation";
 
 const Header = () => {
@@ -18,9 +20,8 @@ const Header = () => {
   return (
     <header className="flex gap-3 w-full items-center justify-stretch">
       <MobileNavigation />
-      <Button className="bg-primary-purple my-1 font-medium" radius="sm">
-        Add New
-      </Button>
+      <Modal />
+
       <Button
         variant="bordered"
         onPress={openPortfolio}
