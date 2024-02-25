@@ -20,7 +20,7 @@ const MobileNavigation = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed top-0 left-0 bg-main-dark-bg min-h-screen w-[60%] z-20"
+            className="fixed top-0 left-0 bg-main-dark-bg min-h-screen w-[60%] z-20 "
             initial="closed"
             animate="open"
             exit="closed"
