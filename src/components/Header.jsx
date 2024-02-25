@@ -5,7 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
 
-import Modal from "./Modal";
+import Modal from "./addProject/Modal";
 import MobileNavigation from "./Navigation/MobileNavigation";
 
 const Header = () => {

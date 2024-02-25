@@ -73,3 +73,12 @@ export const columns = [
     label: "Actions",
   },
 ];
+
+export const projectsTech = [
+  "React",
+  "Next",
+  "Python",
+  "Tailwind",
+  "NodeJS",
+  "MongoDB",
+];
