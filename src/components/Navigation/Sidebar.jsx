@@ -16,7 +16,7 @@ const Sidebar = ({ setIsOpen }) => {
           Project manager
         </h1>
       </Link>
-      <div className="flex flex-col w-full flex-1 max-md:pt-14">
+      <div className="sidebar flex flex-col w-full flex-1 max-md:pt-14">
         {links.map((link) => (
           <Link
             key={link.title}

@@ -12,11 +12,19 @@ const MobileNavigation = () => {
     closed: { x: "-100%" },
   };
 
+  useEffect(() => {
+    if (isOpen) document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
     <div className="md:hidden relative">
       {isOpen && (
         <div
-          className="absolute top-0 left-0 w-screen h-screen z-10"
+          className="absolute overflow-hidden top-0 left-0 w-screen h-screen z-10"
           onClick={() => setIsOpen(false)}
         />
       )}

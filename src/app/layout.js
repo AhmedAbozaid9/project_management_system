@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <div className="flex">
             <Navigation />
-            <main className="min-h-screen flex flex-1 min-w-0 flex-col items-center p-6  mx-auto max-w-7xl">
+            <main className="min-h-screen overflow-x-hidden flex flex-1 min-w-0 flex-col items-center p-6  mx-auto max-w-7xl">
               <Header />
               {children}
             </main>

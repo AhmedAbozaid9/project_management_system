@@ -12,5 +12,8 @@
 
 body {
   background: #1f1e25;
-  scrollbar-width: thin;
+}
+
+.sidebar {
+  overscroll-behavior: contain;
 }
