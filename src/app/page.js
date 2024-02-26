@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-
 import InfoCard from "@/components/dashboard/InfoCard";
 
 import { info_cards } from "@/constants";
@@ -9,18 +8,31 @@ import LatestRepos from "@/components/dashboard/LatestRepos";
 import { useEffect, useState } from "react";
 
 const GITHUB_USERNAME = "AhmedAbozaid9";
-const GITHUB_TOKEN = "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";
+const GITHUB_TOKEN =
+  "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";
 
 export default function Home() {
   const [latestRepos, setLatestRepos] = useState();
   useEffect(() => {
+    const axiosInstance = axios.create();
+
+    axiosInstance.interceptors.request.use((config) => {
+      // Add Authorization header to the request
+      config.headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
+      return config;
+    });
+
+    // Your asynchronous function
     (async () => {
-      const headers = { Authorization: `Bearer ${GITHUB_TOKEN}` };
-      const { data } = await axios(
-        `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=3`,
-        { headers }
-      );
-      setLatestRepos(data.map((project) => project.name));
+      try {
+        const { data } = await axiosInstance.get(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=3`
+        );
+        setLatestRepos(data.map((project) => project.name));
+      } catch (error) {
+        // Handle error
+        console.error("Error fetching data:", error);
+      }
     })();
   }, []);
 
