@@ -9,7 +9,8 @@ import LatestRepos from "@/components/dashboard/LatestRepos";
 import { useEffect, useState } from "react";
 
 const GITHUB_USERNAME = "AhmedAbozaid9";
-const GITHUB_TOKEN = "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";
+const GITHUB_TOKEN =
+  "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";
 
 export default function Home() {
   const [latestRepos, setLatestRepos] = useState();
