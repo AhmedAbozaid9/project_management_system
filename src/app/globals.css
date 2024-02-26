@@ -13,11 +13,13 @@
 body {
   background: #1f1e25;
 }
+.file-input {
+  @apply flex items-center justify-center shadow-sm px-3 border-medium border-default-200 data-[hover=true]:border-default-400 group-data-[focus=true]:border-default-foreground min-h-unit-10 rounded-medium flex-col gap-0 transition-background !duration-150 transition-colors motion-reduce:transition-none h-full py-3.5 text-sm text-gray-400;
+}
+.file-input:hover {
+  border: 2px solid #71717a;
+}
 
 .file-input::file-selector-button {
-  border: 2px solid #6c5ce7;
-  padding: 0.2em 0.4em;
-  border-radius: 0.2em;
-  background-color: #a29bfe;
-  transition: 1s;
+  @apply rounded-md border-none mr-2 bg-primary-purple py-1 px-2;
 }

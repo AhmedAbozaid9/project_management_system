@@ -64,41 +64,36 @@ const MyModal = () => {
                 <div className="flex max-md:flex-col justify-between gap-5">
                   <div className="flex flex-1 flex-col gap-5">
                     <Input
-                      autoFocus
                       label="Project name"
                       placeholder="Enter the project name"
                       variant="bordered"
                     />
                     <Select />
                     <Input
-                      autoFocus
                       label="Deployed link"
                       placeholder="Enter the link to the project itself"
                       variant="bordered"
                     />
                     <Input
-                      autoFocus
                       label="Github link"
                       placeholder="Enter the link to the repo containing the code"
                       variant="bordered"
                     />
-                    <Input
+                    <input
                       ref={imageRef}
                       type="file"
-                      variant="bordered"
                       accept="image/x-png,image/gif,image/jpeg"
                       className="file-input"
                       onChange={handleImageChange}
                     />
                   </div>
                   {image ? (
-                    <div className="relative w-full max-w-96 h-72">
+                    <div className="relative w-full max-w-96 h-72 ">
                       <Image
                         alt="project thumbnail"
-                        width={384}
-                        height={384}
+                        fill
                         src={image}
-                        className="w-full "
+                        className="object-cover object-center"
                       />
                     </div>
                   ) : (
