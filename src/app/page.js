@@ -1,12 +1,29 @@
 "use client";
-import { NextUIProvider } from "@nextui-org/react";
+import axios from "axios";
 
-import InfoCard from "@/components/InfoCard";
+import InfoCard from "@/components/dashboard/InfoCard";
 
 import { info_cards } from "@/constants";
 import ProjectsTable from "@/components/Tables/ProjectsTable";
+import LatestRepos from "@/components/dashboard/LatestRepos";
+import { useEffect, useState } from "react";
+
+const GITHUB_USERNAME = "AhmedAbozaid9";
+const GITHUB_TOKEN = "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";
 
 export default function Home() {
+  const [latestRepos, setLatestRepos] = useState();
+  useEffect(() => {
+    (async () => {
+      const headers = { Authorization: `Bearer ${GITHUB_TOKEN}` };
+      const { data } = await axios(
+        `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=3`,
+        { headers }
+      );
+      setLatestRepos(data.map((project) => project.name));
+    })();
+  }, []);
+
   return (
     <main className="flex flex-1 w-full flex-col items-center">
       <div className="flex items-center flex-col sm:flex-row min-w-full gap-5 py-5">
@@ -18,20 +35,7 @@ export default function Home() {
         <div className="flex flex-col justify-center basis-[66.2%] bg-main-dark-bg rounded-lg p-5">
           <h2 className="font-md">Daily Activity :</h2>
         </div>
-        <div className="flex flex-col justify-center flex-1 bg-main-dark-bg rounded-lg p-5">
-          <h2 className="font-md text-lg font-semibold">Latest commits :</h2>
-          <div className="overflow-y-auto">
-            <p className="text-[#C9C2E8] text-sm underline py-1 cursor-pointer ">
-              Changes this thing
-            </p>
-            <p className="text-[#C9C2E8] text-sm underline py-1 cursor-pointer ">
-              Changes that thign
-            </p>
-            <p className="text-[#C9C2E8] text-sm underline py-1 cursor-pointer ">
-              broke the code
-            </p>
-          </div>
-        </div>
+        <LatestRepos latestRepos={latestRepos} />
       </div>
       <ProjectsTable />
     </main>
