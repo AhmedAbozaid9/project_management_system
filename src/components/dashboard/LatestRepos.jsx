@@ -4,7 +4,7 @@ import { Skeleton } from "@nextui-org/react";
 
 const LatestRepos = ({ latestRepos }) => {
   return (
-    <div className="flex flex-col justify-center flex-1 bg-main-dark-bg rounded-lg p-5">
+    <div className="flex flex-col justify-center flex-auto bg-main-dark-bg rounded-lg p-5">
       <h2 className="font-md text-md font-semibold">Latest repos :</h2>
       <div className="overflow-y-auto flex flex-col gap-1">
         {latestRepos ? (
