@@ -13,6 +13,15 @@
 body {
   background: #1f1e25;
 }
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 .file-input {
   @apply flex items-center justify-center shadow-sm px-3 border-medium border-default-200 data-[hover=true]:border-default-400 group-data-[focus=true]:border-default-foreground min-h-unit-10 rounded-medium flex-col gap-0 transition-background !duration-150 transition-colors motion-reduce:transition-none h-full py-3.5 text-sm text-gray-400;
 }
