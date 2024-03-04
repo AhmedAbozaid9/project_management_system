@@ -1,48 +1,53 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 
-// the hook expects the initialTime to be in seconds
-
-//the callback is expected to run when the timer ends
+const timerReducer = (state, action) => {
+  switch (action.type) {
+    case "START":
+      return { ...state, isExpired: false, isPaused: false, isRunning: true };
+    case "PAUSE":
+      return { ...state, isPaused: true, isRunning: false };
+    case "END":
+      return {
+        ...state,
+        isRunning: false,
+        isExpired: true,
+        time: action.payload,
+      };
+    case "TICK":
+      return state.isRunning ? { ...state, time: state.time - 1 } : state;
+    default:
+      return state;
+  }
+};
 
 export const useTimer = (initialTime, callback) => {
-  const [time, setTime] = useState(initialTime || 60);
-  const [isRunning, setIsRunning] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isExpired, setIsExpired] = useState(false);
+  const [state, dispatch] = useReducer(timerReducer, {
+    time: initialTime || 60,
+    isRunning: false,
+    isPaused: false,
+    isExpired: false,
+  });
 
   useEffect(() => {
-    const timerInterval = setInterval(() => {
-      if (isRunning) setTime((prev) => prev - 1);
-    }, 1000);
+    let timerInterval;
 
-    if (time === 0) {
-      setTime(initialTime);
-      setIsRunning(false);
-      setIsExpired(true);
-      callback();
+    if (state.isRunning) {
+      timerInterval = setInterval(() => {
+        dispatch({ type: "TICK" });
+      }, 1000);
+    }
+
+    if (state.time === 0) {
+      dispatch({ type: "END", payload: initialTime });
+      callback && callback();
     }
 
     return () => clearInterval(timerInterval);
-  }, [time, initialTime, isRunning, callback]);
+  }, [state.time, initialTime, callback, state.isRunning]);
 
-  return {
-    time,
-    isRunning,
-    isPaused,
-    isExpired,
-    start: () => {
-      setIsExpired(false);
-      setIsPaused(false);
-      setIsRunning(true);
-    },
-    pause: () => {
-      setIsPaused(true);
-      setIsRunning(false);
-    },
-    end: () => {
-      setIsRunning(false);
-      setIsExpired(true);
-      setTime(initialTime);
-    },
-  };
+  const start = () => dispatch({ type: "START" });
+  const pause = () => dispatch({ type: "PAUSE" });
+  const end = () => dispatch({ type: "END", payload: initialTime });
+
+  return { ...state, start, pause, end };
 };
