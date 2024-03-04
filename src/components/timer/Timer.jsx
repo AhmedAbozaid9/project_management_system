@@ -20,8 +20,9 @@ const Timer = () => {
         <input
           value={inputTime}
           onChange={(e) => handleInputChange(e.target.value)}
+          disabled={isExpired}
           type="number"
-          className="bg-transparent text-center w-1/2 outline-none"
+          className="bg-transparent text-center w-1/2"
           min="1"
           max="180"
         />

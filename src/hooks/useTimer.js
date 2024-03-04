@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useReducer, useEffect } from "react";
 
 const timerReducer = (state, action) => {
   switch (action.type) {
@@ -25,13 +25,14 @@ export const useTimer = (initialTime, callback) => {
     time: initialTime || 60,
     isRunning: false,
     isPaused: false,
-    isExpired: false,
+    isExpired: true,
   });
 
   useEffect(() => {
     let timerInterval;
 
     if (state.isRunning) {
+      dispatch({ type: "START" });
       timerInterval = setInterval(() => {
         dispatch({ type: "TICK" });
       }, 1000);
