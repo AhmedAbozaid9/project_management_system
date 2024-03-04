@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { Button } from "@nextui-org/react";
+import { useTimer } from "@/hooks/useTimer";
 
 const Timer = () => {
-  const handleTimerOnChange = (e) => {};
-
-  const startTimer = () => {};
+  const { time, isRunning, isPaused, isExpired, start, pause, end } = useTimer(
+    10,
+    () => console.log("it is done")
+  );
+  console.log(time);
+  console.log("is paused", isPaused);
+  console.log("is expired", isExpired);
 
   return (
     <div className="flex flex-col flex-1 justify-center items-center">
@@ -18,10 +23,17 @@ const Timer = () => {
         <span className="text-lg font-medium text-gray-300">Minutes</span>
       </div>
       <div className="flex gap-3 items-center justify-center">
-        <Button className="bg-primary-purple font-medium my-6 w-32">
+        <Button
+          className="bg-primary-purple font-medium my-6 w-32"
+          onPress={isRunning ? pause : start}
+        >
           Start
         </Button>
-        <Button variant="bordered" className="font-medium my-6 w-32">
+        <Button
+          variant="bordered"
+          className="font-medium my-6 w-32"
+          onPress={end}
+        >
           End
         </Button>
       </div>
