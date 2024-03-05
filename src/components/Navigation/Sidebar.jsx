@@ -1,12 +1,15 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { IoIosLogIn } from "react-icons/io";
 
 import { links } from "@/constants";
 import { usePathname } from "next/navigation";
 
 const Sidebar = ({ setIsOpen }) => {
+  const {data:session} = useSession();
+  console.log(session);
   const pathname = usePathname();
 
   return (
@@ -30,10 +33,23 @@ const Sidebar = ({ setIsOpen }) => {
             {link.title}
           </Link>
         ))}
-        <div className="transition-colors hover:bg-hover-bg p-3 rounded-md mt-auto cursor-pointer flex gap-5 items-center px-2 font-medium">
-          <IoIosLogIn size={22} />
-          Login
-        </div>
+        {session ? (
+          <Link
+            href="/api/auth/signout?callbackUrl=/"
+            className="transition-colors hover:bg-hover-bg p-3 rounded-md mt-auto cursor-pointer flex gap-5 items-center px-2 font-medium"
+          >
+            <IoIosLogIn size={22} />
+            Logout
+          </Link>
+        ) : (
+          <Link
+            href="/api/auth/signin"
+            className="transition-colors hover:bg-hover-bg p-3 rounded-md mt-auto cursor-pointer flex gap-5 items-center px-2 font-medium"
+          >
+            <IoIosLogIn size={22} />
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
