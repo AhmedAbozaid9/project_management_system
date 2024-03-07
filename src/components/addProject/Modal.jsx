@@ -19,7 +19,10 @@ const MyModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [title, setTitle] = useState("");
-  const [tech, setTech] = React.useState(new Set([]));
+  const [tech, setTech] = useState(new Set([]));
+  const [type, setType] = useState("");
+  const [github, setGithub] = useState("");
+  const [website, setWebsite] = useState("");
 
   const [image, setImage] = useState("");
   const imageRef = useRef(null);
@@ -39,11 +42,16 @@ const MyModal = () => {
   };
 
   const handleFormSubmit = async () => {
-    const { data } = axios.post("/api/projects/add", {
-      title,
-      date: new Date(),
-      tech,
-    });
+    try {
+      await axios.post("/api/projects/new", {
+        title,
+        date: new Date(),
+        github,
+        website,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const uploadImage = () => {
@@ -74,10 +82,7 @@ const MyModal = () => {
                 Add new project
               </ModalHeader>
               <ModalBody>
-                <form
-                  onSubmit={handleFormSubmit}
-                  className="flex max-md:flex-col justify-between gap-5"
-                >
+                <div className="flex max-md:flex-col justify-between gap-5">
                   <div className="flex flex-1 flex-col gap-5">
                     <Input
                       label="Project name"
@@ -95,18 +100,22 @@ const MyModal = () => {
                     <Select
                       label="Project type"
                       placeholder="select the project type"
-                      values={tech}
-                      setValues={setTech}
+                      value={type}
+                      setValue={setType}
                     />
                     <Input
                       label="Deployed link"
                       placeholder="Enter the link to the project itself"
                       variant="bordered"
+                      value={website}
+                      onChange={(e) => setWebsite(e.target.value)}
                     />
                     <Input
                       label="Github link"
                       placeholder="Enter the link to the repo containing the code"
                       variant="bordered"
+                      value={github}
+                      onChange={(e) => setGithub(e.target.value)}
                     />
                     <input
                       ref={imageRef}
@@ -128,11 +137,14 @@ const MyModal = () => {
                   ) : (
                     <div className="w-full max-w-96 h-72 bg-gray-500"></div>
                   )}
-                </form>
+                </div>
               </ModalBody>
               <ModalFooter>
                 <Button
-                  onPress={onClose}
+                  onPress={() => {
+                    onClose();
+                    handleFormSubmit();
+                  }}
                   className="bg-primary-purple font-medium"
                   radius="sm"
                 >
