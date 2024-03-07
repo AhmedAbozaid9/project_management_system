@@ -1,5 +1,7 @@
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import User from "@/models/user";
+import { connectToDB } from "@/utils/database";
 
 export const options = {
   providers: [
@@ -13,15 +15,33 @@ export const options = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) token.role = user.role;
-      return token;
-    },
-    async session({ session, token }) {
-      if (session?.user) session.user.role = token.role;
+    async session({ session }) {
+      const sessionUser = await User.findOne({
+        email: session.user.email,
+      });
+      session.user.id = sessionUser._id.toString();
       return session;
     },
+    async signIn({ profile }) {
+      try {
+        await connectToDB();
+        // check if a user already exists
+        const userExists = await User.findOne({ email: profile.email });
+        //create a new user if not
+        if (!userExists) {
+          await User.create({
+            email: profile.email,
+            username: profile.name.replace(" ", "").toLowerCase(),
+            image: profile.picture,
+            role: "user",
+          });
+        }
+        return true;
+      } catch (e) {
+        console.log(e);
+        return false;
+      }
+    },
   },
-  signIn: {},
   secret: process.env.NEXTAUTH_SECRET,
 };

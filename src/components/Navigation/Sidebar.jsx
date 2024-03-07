@@ -2,13 +2,13 @@
 import React from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { IoIosLogIn } from "react-icons/io";
+import { VscSignOut, VscSignIn } from "react-icons/vsc";
 
 import { links } from "@/constants";
 import { usePathname } from "next/navigation";
 
 const Sidebar = ({ setIsOpen }) => {
-  const {data:session} = useSession();
+  const { data: session } = useSession();
   console.log(session);
   const pathname = usePathname();
 
@@ -38,7 +38,7 @@ const Sidebar = ({ setIsOpen }) => {
             href="/api/auth/signout?callbackUrl=/"
             className="transition-colors hover:bg-hover-bg p-3 rounded-md mt-auto cursor-pointer flex gap-5 items-center px-2 font-medium"
           >
-            <IoIosLogIn size={22} />
+            <VscSignOut size={22} />
             Logout
           </Link>
         ) : (
@@ -46,7 +46,7 @@ const Sidebar = ({ setIsOpen }) => {
             href="/api/auth/signin"
             className="transition-colors hover:bg-hover-bg p-3 rounded-md mt-auto cursor-pointer flex gap-5 items-center px-2 font-medium"
           >
-            <IoIosLogIn size={22} />
+            <VscSignIn size={22} />
             Login
           </Link>
         )}
