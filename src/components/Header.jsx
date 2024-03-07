@@ -1,14 +1,17 @@
 "use client";
 
 import React from "react";
-import { FaUserCircle } from "react-icons/fa";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { Button } from "@nextui-org/react";
+import { Avatar, Button } from "@nextui-org/react";
 
 import Modal from "./addProject/Modal";
 import MobileNavigation from "./Navigation/MobileNavigation";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
+  const { data: session } = useSession();
+  console.log(session);
+
   const openPortfolio = () => {
     window.open("https://simple-portfolio-six-psi.vercel.app/", "_blank");
   };
@@ -38,7 +41,11 @@ const Header = () => {
       >
         <FaExternalLinkAlt className="sm:hidden " onClick={openPortfolio} />
       </Button>
-      <FaUserCircle size={28} className="ml-auto max-sm:hidden" />
+      <Avatar
+        className="ml-auto"
+        name={session?.user.name}
+        src={session?.user.image}
+      />
     </header>
   );
 };
