@@ -10,11 +10,16 @@ import {
   Input,
 } from "@nextui-org/react";
 import Image from "next/image";
+import axios from "axios";
 
+import MultiSelect from "./MultiSelect";
 import Select from "./Select";
 
 const MyModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const [title, setTitle] = useState("");
+  const [tech, setTech] = React.useState(new Set([]));
 
   const [image, setImage] = useState("");
   const imageRef = useRef(null);
@@ -31,6 +36,14 @@ const MyModal = () => {
 
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleFormSubmit = async () => {
+    const { data } = axios.post("/api/projects/add", {
+      title,
+      date: new Date(),
+      tech,
+    });
   };
 
   const uploadImage = () => {
@@ -61,14 +74,30 @@ const MyModal = () => {
                 Add new project
               </ModalHeader>
               <ModalBody>
-                <div className="flex max-md:flex-col justify-between gap-5">
+                <form
+                  onSubmit={handleFormSubmit}
+                  className="flex max-md:flex-col justify-between gap-5"
+                >
                   <div className="flex flex-1 flex-col gap-5">
                     <Input
                       label="Project name"
                       placeholder="Enter the project name"
                       variant="bordered"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
                     />
-                    <Select />
+                    <MultiSelect
+                      label="Project tech"
+                      placeholder="select the technologies"
+                      values={tech}
+                      setValues={setTech}
+                    />
+                    <Select
+                      label="Project type"
+                      placeholder="select the project type"
+                      values={tech}
+                      setValues={setTech}
+                    />
                     <Input
                       label="Deployed link"
                       placeholder="Enter the link to the project itself"
@@ -99,7 +128,7 @@ const MyModal = () => {
                   ) : (
                     <div className="w-full max-w-96 h-72 bg-gray-500"></div>
                   )}
-                </div>
+                </form>
               </ModalBody>
               <ModalFooter>
                 <Button

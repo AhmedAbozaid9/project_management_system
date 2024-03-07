@@ -1,29 +1,23 @@
 import React from "react";
 import { Select, SelectItem } from "@nextui-org/react";
-import { projectsTech } from "@/constants";
 
-const MySelect = () => {
-  const [values, setValues] = React.useState(new Set([]));
-
+const MySelect = ({ label, placeholder, value, setValue }) => {
+  const types = ["Small project", "Website"];
   return (
     <div className="flex w-full flex-col gap-2">
       <Select
         variant="bordered"
-        label="Project Tech"
-        selectionMode="multiple"
-        placeholder="Select a tech"
-        selectedKeys={values}
-        onSelectionChange={setValues}
+        label={label}
+        placeholder={placeholder}
+        selectedKeys={value}
+        onSelectionChange={setValue}
       >
-        {projectsTech.map((project) => (
-          <SelectItem key={project} value={project}>
-            {project}
+        {types.map((type) => (
+          <SelectItem key={type} value={type}>
+            {type}
           </SelectItem>
         ))}
       </Select>
-      <p className="text-small text-default-500">
-        Selected: {Array.from(values).join(", ")}
-      </p>
     </div>
   );
 };
