@@ -6,7 +6,7 @@ import axios from "axios";
 import MultiSelect from "./MultiSelect";
 import Select from "./Select";
 
-const NewProjectForm = () => {
+const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
   const [title, setTitle] = useState("");
   const [tech, setTech] = useState(new Set([]));
   const [type, setType] = useState("");
@@ -14,7 +14,6 @@ const NewProjectForm = () => {
   const [website, setWebsite] = useState("");
 
   const [image, setImage] = useState("");
-  console.log(image);
   const imageRef = useRef(null);
 
   const handleImageChange = () => {
@@ -33,6 +32,7 @@ const NewProjectForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       await axios.post("/api/projects/new", {
         title,
@@ -45,6 +45,9 @@ const NewProjectForm = () => {
       });
     } catch (e) {
       console.log(e);
+    } finally {
+      setIsSubmitting(false);
+      closeModal();
     }
   };
 
