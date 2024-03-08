@@ -3,7 +3,7 @@ import Project from "@/models/project";
 
 export const POST = async (request) => {
   const projectDetails = await request.json();
-  console.log(projectDetails);
+
   try {
     connectToDB();
     const newProject = new Project(projectDetails);
