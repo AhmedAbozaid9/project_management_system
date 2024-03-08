@@ -14,6 +14,7 @@ const NewProjectForm = () => {
   const [website, setWebsite] = useState("");
 
   const [image, setImage] = useState("");
+  console.log(image);
   const imageRef = useRef(null);
 
   const handleImageChange = () => {
@@ -40,6 +41,7 @@ const NewProjectForm = () => {
         type: type.currentKey,
         github,
         website,
+        thumbnail: image,
       });
     } catch (e) {
       console.log(e);
