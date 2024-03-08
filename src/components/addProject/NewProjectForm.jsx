@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Input } from "@nextui-org/react";
+import { Input, Skeleton } from "@nextui-org/react";
 import Image from "next/image";
 import axios from "axios";
 
@@ -104,7 +104,7 @@ const NewProjectForm = () => {
           />
         </div>
       ) : (
-        <div className="w-full max-w-96 h-72 bg-gray-500"></div>
+        <Skeleton className="w-full max-w-96 h-72"></Skeleton>
       )}
     </form>
   );
