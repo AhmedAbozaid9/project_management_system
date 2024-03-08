@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -13,6 +13,7 @@ import NewProjectForm from "./NewProjectForm";
 
 const MyModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   return (
     <>
@@ -38,15 +39,18 @@ const MyModal = () => {
                 Add new project
               </ModalHeader>
               <ModalBody>
-                <NewProjectForm />
+                <NewProjectForm
+                  closeModal={onClose}
+                  setIsSubmitting={setIsSubmitting}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button
-                  onPress={onClose}
                   className="bg-primary-purple font-medium"
                   radius="sm"
                   type="submit"
                   form="add-project"
+                  isLoading={isSubmitting}
                 >
                   Submit
                 </Button>

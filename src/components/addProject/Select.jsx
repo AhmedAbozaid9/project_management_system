@@ -11,6 +11,7 @@ const MySelect = ({ label, placeholder, value, setValue }) => {
         placeholder={placeholder}
         selectedKeys={value}
         onSelectionChange={setValue}
+        isRequired
       >
         {types.map((type) => (
           <SelectItem key={type} value={type}>

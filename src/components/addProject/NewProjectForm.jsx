@@ -6,7 +6,7 @@ import axios from "axios";
 import MultiSelect from "./MultiSelect";
 import Select from "./Select";
 
-const NewProjectForm = () => {
+const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
   const [title, setTitle] = useState("");
   const [tech, setTech] = useState(new Set([]));
   const [type, setType] = useState("");
@@ -14,7 +14,6 @@ const NewProjectForm = () => {
   const [website, setWebsite] = useState("");
 
   const [image, setImage] = useState("");
-  console.log(image);
   const imageRef = useRef(null);
 
   const handleImageChange = () => {
@@ -33,6 +32,7 @@ const NewProjectForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       await axios.post("/api/projects/new", {
         title,
@@ -45,6 +45,9 @@ const NewProjectForm = () => {
       });
     } catch (e) {
       console.log(e);
+    } finally {
+      setIsSubmitting(false);
+      closeModal();
     }
   };
 
@@ -54,13 +57,14 @@ const NewProjectForm = () => {
       onSubmit={(e) => handleFormSubmit(e)}
       className="flex max-md:flex-col justify-between gap-5"
     >
-      <div className="flex flex-1 flex-col gap-5">
+      <div className="flex flex-1 flex-col gap-4">
         <Input
           label="Project name"
           placeholder="Enter the project name"
           variant="bordered"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          isRequired
         />
         <MultiSelect
           label="Project tech"
@@ -80,6 +84,7 @@ const NewProjectForm = () => {
           variant="bordered"
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
+          isRequired
         />
         <Input
           label="Github link"
@@ -87,6 +92,7 @@ const NewProjectForm = () => {
           variant="bordered"
           value={github}
           onChange={(e) => setGithub(e.target.value)}
+          isRequired
         />
         <input
           ref={imageRef}
@@ -94,6 +100,7 @@ const NewProjectForm = () => {
           accept="image/x-png,image/gif,image/jpeg"
           className="file-input"
           onChange={handleImageChange}
+          required
         />
       </div>
       {image ? (

@@ -12,6 +12,7 @@ const MySelect = ({ label, placeholder, values, setValues }) => {
         placeholder={placeholder}
         selectedKeys={values}
         onSelectionChange={setValues}
+        isRequired
       >
         {projectsTech.map((project) => (
           <SelectItem key={project} value={project}>
