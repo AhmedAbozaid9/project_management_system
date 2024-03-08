@@ -43,5 +43,5 @@ export const options = {
       }
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_Secret,
 };
