@@ -57,13 +57,14 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
       onSubmit={(e) => handleFormSubmit(e)}
       className="flex max-md:flex-col justify-between gap-5"
     >
-      <div className="flex flex-1 flex-col gap-5">
+      <div className="flex flex-1 flex-col gap-4">
         <Input
           label="Project name"
           placeholder="Enter the project name"
           variant="bordered"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          isRequired
         />
         <MultiSelect
           label="Project tech"
@@ -83,6 +84,7 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
           variant="bordered"
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
+          isRequired
         />
         <Input
           label="Github link"
@@ -90,6 +92,7 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
           variant="bordered"
           value={github}
           onChange={(e) => setGithub(e.target.value)}
+          isRequired
         />
         <input
           ref={imageRef}
@@ -97,6 +100,7 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
           accept="image/x-png,image/gif,image/jpeg"
           className="file-input"
           onChange={handleImageChange}
+          required
         />
       </div>
       {image ? (
