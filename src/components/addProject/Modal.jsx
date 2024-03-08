@@ -46,6 +46,8 @@ const MyModal = () => {
       await axios.post("/api/projects/new", {
         title,
         date: new Date(),
+        tech: [...tech],
+        type: type.currentKey,
         github,
         website,
       });
