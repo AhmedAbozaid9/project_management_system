@@ -10,7 +10,6 @@ import { useSession } from "next-auth/react";
 
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
 
   const openPortfolio = () => {
     window.open("https://simple-portfolio-six-psi.vercel.app/", "_blank");

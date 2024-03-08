@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 
 const Sidebar = ({ setIsOpen }) => {
   const { data: session } = useSession();
-  console.log(session);
   const pathname = usePathname();
 
   return (
