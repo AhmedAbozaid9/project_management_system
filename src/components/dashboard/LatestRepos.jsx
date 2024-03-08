@@ -11,7 +11,7 @@ const LatestRepos = ({ latestRepos }) => {
           latestRepos.map((repo) => (
             <Link
               key={repo}
-              className="text-[#C9C2E8] text-sm underline py-1 cursor-pointer"
+              className="text-[#C9C2E8] text-sm underline pt-1 cursor-pointer"
               href={`https://github.com/AhmedAbozaid9/${repo}`}
               target="_blank"
             >

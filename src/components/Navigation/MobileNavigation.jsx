@@ -28,13 +28,17 @@ const MobileNavigation = () => {
           onClick={() => setIsOpen(false)}
         />
       )}
-      <span className={`z-50 ${isOpen ? "fixed top-6 left-6" : "relative"}`}>
+      <span
+        className={`z-50 ${
+          isOpen ? "fixed top-3 left-3 sm:top-6 sm:left-6" : "relative"
+        }`}
+      >
         <Hamburger toggled={isOpen} toggle={setIsOpen} />
       </span>
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed top-0 left-0 bg-main-dark-bg min-h-full w-[60%] z-20 "
+            className="fixed top-0 left-0 bg-main-dark-bg min-h-full w-[70%] z-20 "
             initial="closed"
             animate="open"
             exit="closed"

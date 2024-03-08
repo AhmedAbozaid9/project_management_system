@@ -36,11 +36,12 @@ const Header = () => {
         variant="bordered"
         onPress={openPortfolio}
         radius="sm"
-        className="sm:hidden ml-auto"
+        className="sm:hidden"
       >
         <FaExternalLinkAlt className="sm:hidden " onClick={openPortfolio} />
       </Button>
       <Avatar
+        size="sm"
         className="ml-auto"
         name={session?.user.name}
         src={session?.user.image}
