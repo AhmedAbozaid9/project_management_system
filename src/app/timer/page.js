@@ -8,12 +8,11 @@ import StopWatch from "@/components/timer/StopWatch";
 import TimerStatistics from "@/components/timer/TimerStatistics";
 import SelectProject from "@/components/timer/SelectProject";
 
-
 const Page = () => {
   const [selectedType, setSelectedType] = useState("Timer");
   return (
     <section className="w-full p-6 flex justify-between items-center">
-      <div className="flex flex-col gap-5 justify-center">
+      <div className="flex flex-col gap-3 justify-center items-center">
         <SelectProject />
 
         <Tabs
