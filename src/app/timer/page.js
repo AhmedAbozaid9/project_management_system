@@ -42,7 +42,7 @@ const Page = () => {
         {selectedType === "Timer" ? <Timer /> : <StopWatch />}
       </div>
       <TimerStatistics />
-    </section>
+    </section> 
   );
 };
 
