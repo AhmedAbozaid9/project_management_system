@@ -4,7 +4,7 @@ import { useTimer } from "@/hooks/useTimer";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
-  const { time, isRunning, isPaused, isExpired, start, pause, resume, end } =
+  const { time, isPaused, isExpired, start, pause, resume, end } =
     useTimer(inputTime * 60, () => console.log("it is done"));
 
   const handleInputChange = (value) => {
