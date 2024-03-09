@@ -32,7 +32,8 @@ const Timer = () => {
           </>
         ) : (
           <div>
-            {Math.floor(time / 60)}:{time % 60}
+            {Math.floor(time / 60) ? Math.floor(time / 60) : "00"}:
+            {time % 60 ? time % 60 : "00"}{" "}
           </div>
         )}
       </div>
