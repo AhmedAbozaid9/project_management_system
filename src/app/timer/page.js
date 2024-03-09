@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Tabs, Tab, Select, SelectItem } from "@nextui-org/react";
 
 import Timer from "@/components/timer/Timer";
+import StopWatch from "@/components/timer/StopWatch";
 import TimerStatistics from "@/components/timer/TimerStatistics";
 
 const projects = [
@@ -13,7 +14,6 @@ const projects = [
 
 const Page = () => {
   const [selectedType, setSelectedType] = useState("Timer");
-  console.log(selectedType);
   return (
     <section className="w-full p-6 flex justify-between items-center">
       <div className="flex flex-col gap-5 justify-center">
@@ -38,7 +38,7 @@ const Page = () => {
           <Tab key="Timer" title="Timer" />
           <Tab key="Stopwatch" title="Stopwatch" />
         </Tabs>
-        <Timer />
+        {selectedType === "Timer" ? <Timer /> : <StopWatch />}
       </div>
       <TimerStatistics />
     </section>
