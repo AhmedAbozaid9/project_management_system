@@ -1,29 +1,19 @@
 "use client";
 
 import React, { useState } from "react";
-import { Tabs, Tab, Select, SelectItem } from "@nextui-org/react";
+import { Tabs, Tab, Select, SelectItem, Divider } from "@nextui-org/react";
 
 import Timer from "@/components/timer/Timer";
 import StopWatch from "@/components/timer/StopWatch";
 import TimerStatistics from "@/components/timer/TimerStatistics";
-
-const projects = [
-  { key: 1, title: "project 1" },
-  { key: 2, title: "project 2" },
-];
+import SelectProject from "@/components/timer/SelectProject";
 
 const Page = () => {
   const [selectedType, setSelectedType] = useState("Timer");
   return (
-    <section className="w-full p-6 flex justify-between items-center">
-      <div className="flex flex-col gap-5 justify-center">
-        <Select size="sm" variant="underlined" label="Select a project">
-          {projects.map((project) => (
-            <SelectItem key={project.key} value={project.title}>
-              {project.title}
-            </SelectItem>
-          ))}
-        </Select>
+    <section className="w-full p-6 flex max-md:flex-col justify-between">
+      <div className="flex flex-1 flex-col gap-3 justify-center items-center">
+        <SelectProject />
 
         <Tabs
           size="sm"
@@ -40,8 +30,9 @@ const Page = () => {
         </Tabs>
         {selectedType === "Timer" ? <Timer /> : <StopWatch />}
       </div>
+      <Divider orientation="vertical" className="max-md:hidden mx-5" />
       <TimerStatistics />
-    </section> 
+    </section>
   );
 };
 
