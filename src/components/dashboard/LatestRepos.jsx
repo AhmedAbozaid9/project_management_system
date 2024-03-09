@@ -19,14 +19,14 @@ const LatestRepos = ({ latestRepos }) => {
             </Link>
           ))
         ) : (
-          <div className="min-h-[92px]">
-            <Skeleton className="my-3 w-3/5">
+          <div className="min-h-[80px]">
+            <Skeleton className="mt-3 w-3/5">
               <div className="h-3 rounded-lg bg-default-200"></div>
             </Skeleton>
-            <Skeleton className="my-3 w-2/5">
+            <Skeleton className="mt-3 w-2/5">
               <div className="h-3 rounded-lg bg-default-200"></div>
             </Skeleton>
-            <Skeleton className="my-3 w-4/5">
+            <Skeleton className="mt-3 w-4/5">
               <div className="h-3 rounded-lg bg-default-200"></div>
             </Skeleton>
           </div>
