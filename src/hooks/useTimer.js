@@ -3,9 +3,17 @@ import { useEffect, useReducer } from "react";
 const timerReducer = (state, action) => {
   switch (action.type) {
     case "START":
-      return { ...state, isExpired: false, isPaused: false, isRunning: true };
+      return {
+        ...state,
+        isExpired: false,
+        isPaused: false,
+        isRunning: true,
+        time: action.payload,
+      };
     case "PAUSE":
       return { ...state, isPaused: true, isRunning: false };
+    case "RESUME":
+      return { ...state, isPaused: false, isRunning: true };
     case "END":
       return {
         ...state,
@@ -22,7 +30,7 @@ const timerReducer = (state, action) => {
 
 export const useTimer = (initialTime, callback) => {
   const [state, dispatch] = useReducer(timerReducer, {
-    time: initialTime || 60,
+    time: initialTime,
     isRunning: false,
     isPaused: false,
     isExpired: true,
@@ -45,9 +53,10 @@ export const useTimer = (initialTime, callback) => {
     return () => clearInterval(timerInterval);
   }, [state.time, initialTime, callback, state.isRunning]);
 
-  const start = () => dispatch({ type: "START" });
+  const start = () => dispatch({ type: "START", payload: initialTime });
   const pause = () => dispatch({ type: "PAUSE" });
+  const resume = () => dispatch({ type: "RESUME" });
   const end = () => dispatch({ type: "END", payload: initialTime });
 
-  return { ...state, start, pause, end };
+  return { ...state, start, pause, resume, end };
 };

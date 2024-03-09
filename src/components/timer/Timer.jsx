@@ -4,11 +4,8 @@ import { useTimer } from "@/hooks/useTimer";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
-
-  const { time, isRunning, isPaused, isExpired, start, pause, end } = useTimer(
-    inputTime * 60,
-    () => console.log("it is done")
-  );
+  const { time, isRunning, isPaused, isExpired, start, pause, resume, end } =
+    useTimer(inputTime * 60, () => console.log("it is done"));
 
   const handleInputChange = (value) => {
     if (value > 180) setInputTime(180);
@@ -40,7 +37,7 @@ const Timer = () => {
       <div className="flex gap-3 items-center justify-center">
         <Button
           className="bg-primary-purple font-medium my-6 w-32"
-          onPress={isRunning ? pause : start}
+          onPress={isExpired ? start : isPaused ? resume : pause}
         >
           {isExpired ? "Start" : isPaused ? "Resume" : "Pause"}
         </Button>
