@@ -3,7 +3,7 @@ import axios from "axios";
 import InfoCard from "@/components/dashboard/InfoCard";
 
 import { info_cards } from "@/constants";
-import ProjectsTable from "@/components/Tables/ProjectsTable";
+import ProjectsTable from "@/components/Tables/SummaryProjectsTable";
 import LatestRepos from "@/components/dashboard/LatestRepos";
 import { useEffect, useState } from "react";
 

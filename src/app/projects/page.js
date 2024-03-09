@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 
-import ProjectsTable from "@/components/Tables/ProjectsTable";
+import ProjectsTable from "@/components/Tables/SummaryProjectsTable";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
 import React, { useContext, useEffect } from "react";
 
