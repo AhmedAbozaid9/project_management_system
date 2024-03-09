@@ -1,22 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { Avatar, Button } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
 import Modal from "./addProject/Modal";
 import MobileNavigation from "./Navigation/MobileNavigation";
-import { useSession } from "next-auth/react";
+import { TimerContext } from "@/contexts/timerContext";
 
 const Header = () => {
   const { data: session } = useSession();
+  const { timer } = useContext(TimerContext);
+  console.log(timer);
 
   const openPortfolio = () => {
     window.open("https://simple-portfolio-six-psi.vercel.app/", "_blank");
-  };
-
-  const addProject = () => {
-    console.log("aaa");
   };
 
   return (
