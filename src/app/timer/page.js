@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Tabs, Tab, Select, SelectItem, Divider } from "@nextui-org/react";
+import { Tabs, Tab, Divider } from "@nextui-org/react";
 
 import Timer from "@/components/timer/Timer";
 import StopWatch from "@/components/timer/StopWatch";
@@ -12,7 +12,7 @@ const Page = () => {
   const [selectedType, setSelectedType] = useState("Timer");
   return (
     <section className="w-full p-6 flex max-md:flex-col justify-between">
-      <div className="flex flex-1 flex-col gap-3 justify-center items-center">
+      <div className="flex flex-1 flex-col gap-5 items-center">
         <SelectProject />
 
         <Tabs
@@ -21,9 +21,7 @@ const Page = () => {
           onSelectionChange={setSelectedType}
           radius="full"
           className="mx-auto"
-          classNames={{
-            panel: "bg-primary-purple",
-          }}
+          variant="bordered"
         >
           <Tab key="Timer" title="Timer" />
           <Tab key="Stopwatch" title="Stopwatch" />

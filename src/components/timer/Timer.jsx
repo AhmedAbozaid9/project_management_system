@@ -4,8 +4,10 @@ import { useTimer } from "@/hooks/useTimer";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
-  const { time, isPaused, isExpired, start, pause, resume, end } =
-    useTimer(inputTime * 60, () => console.log("it is done"));
+  const { time, isPaused, isExpired, start, pause, resume, end } = useTimer(
+    inputTime * 60,
+    () => console.log("it is done")
+  );
 
   const handleInputChange = (value) => {
     if (value > 180) setInputTime(180);
@@ -15,7 +17,7 @@ const Timer = () => {
 
   return (
     <div className="flex flex-col flex-1 justify-center items-center">
-      <div className="text-6xl w-72 h-72 gap-2 p-3 rounded-full border-2 border-white flex items-center justify-center flex-col">
+      <div className="text-6xl w-72 h-72 gap-2 p-3 rounded-full border-2 border-[#2F2E35] flex items-center justify-center flex-col">
         {isExpired ? (
           <>
             <input
