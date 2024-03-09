@@ -12,7 +12,7 @@ const Sidebar = ({ setIsOpen }) => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col justify-between h-[100dvh] p-3 sm:p-6 drop-shadow-md">
+    <div className="flex flex-col justify-between h-[100dvh] max-sm:text-sm p-3 sm:p-6 drop-shadow-md">
       <Link href="/">
         <h1 className="text-primary-purple font-semibold text-2xl mb-6 max-md:hidden">
           Project manager
