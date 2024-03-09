@@ -1,4 +1,6 @@
-import { useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
+
+import { TimerContext } from "@/contexts/timerContext";
 
 const timerReducer = (state, action) => {
   switch (action.type) {
@@ -36,9 +38,11 @@ export const useTimer = (initialTime, callback) => {
     isExpired: true,
   });
 
+  const { setTimer } = useContext(TimerContext);
+
   useEffect(() => {
     let timerInterval;
-
+    setTimer(state.isExpired ? 0 : state.time);
     if (state.isRunning) {
       timerInterval = setInterval(() => {
         dispatch({ type: "TICK" });
@@ -51,7 +55,7 @@ export const useTimer = (initialTime, callback) => {
     }
 
     return () => clearInterval(timerInterval);
-  }, [state.time, initialTime, callback, state.isRunning]);
+  }, [setTimer, state.time, initialTime, callback, state.isRunning]);
 
   const start = () => dispatch({ type: "START", payload: initialTime });
   const pause = () => dispatch({ type: "PAUSE" });
