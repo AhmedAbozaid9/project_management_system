@@ -41,7 +41,7 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
         type: type.currentKey,
         github,
         website,
-        thumbnail: image,
+        image,
       });
     } catch (e) {
       console.log(e);

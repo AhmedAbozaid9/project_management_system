@@ -5,12 +5,14 @@ import InfoCard from "@/components/dashboard/InfoCard";
 import { info_cards } from "@/constants";
 import ProjectsTable from "@/components/Tables/SummaryProjectsTable";
 import LatestRepos from "@/components/dashboard/LatestRepos";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ProjectsContext } from "@/contexts/ProjectsContext";
 
 const GITHUB_USERNAME = "AhmedAbozaid9";
 
 export default function Home() {
   const [latestRepos, setLatestRepos] = useState();
+  const { projects, setProjects } = useContext(ProjectsContext);
   useEffect(() => {
     (async () => {
       const { data } = await axios(

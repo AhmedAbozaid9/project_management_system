@@ -21,8 +21,10 @@ const ProjectSchema = new Schema({
   type: {
     type: String,
   },
-  thumbnail: {
+  image: {
     type: String,
+    ref: "Image",
+    required: true,
   },
   github: {
     type: String,
