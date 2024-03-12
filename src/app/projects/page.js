@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 
-import ProjectsTable from "@/components/Tables/SummaryProjectsTable";
+import ProjectsTable from "@/components/Tables/ProjectsTable";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
 import React, { useContext, useEffect } from "react";
 
@@ -16,7 +16,7 @@ const Page = () => {
   console.log(projects);
   return (
     <div className="w-full">
-      <ProjectsTable projects={projects} />
+      {projects && <ProjectsTable projects={projects} />}
     </div>
   );
 };

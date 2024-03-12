@@ -40,7 +40,7 @@ export const info_cards = [
 
 export const columns = [
   {
-    key: "name",
+    key: "title",
     label: "Name",
   },
 
@@ -53,7 +53,7 @@ export const columns = [
     label: "Type",
   },
   {
-    key: "year",
+    key: "date",
     label: "Year",
   },
   {

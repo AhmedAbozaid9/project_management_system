@@ -11,7 +11,7 @@ const RenderCell = ({ project, columnKey }) => {
     const cellValue = project[columnKey];
 
     switch (columnKey) {
-      case "name":
+      case "title":
         return <p>{cellValue}</p>;
       case "tech":
         return (
@@ -31,8 +31,8 @@ const RenderCell = ({ project, columnKey }) => {
           </Chip>
         );
 
-      case "year":
-        return <p>{cellValue}</p>;
+      case "date":
+        return <p>{new Date(cellValue).getFullYear()}</p>;
       case "progress":
         return (
           <div className="flex">
@@ -54,7 +54,7 @@ const RenderCell = ({ project, columnKey }) => {
                 </span>
               </Link>
             </Tooltip>
-            <Tooltip color="danger" content="Delete user">
+            <Tooltip color="danger" content="Delete project">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
                 <LuTrash2 size={20} />
               </span>
