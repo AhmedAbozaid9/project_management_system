@@ -7,17 +7,16 @@ import React, { useContext, useEffect } from "react";
 
 const Page = () => {
   const { projects, setProjects } = useContext(ProjectsContext);
-  console.log(projects);
   useEffect(() => {
     (async () => {
       const { data } = await axios.get("/api/projects");
       setProjects(data);
     })();
   }, [setProjects]);
-
+  console.log(projects);
   return (
     <div className="w-full">
-      <ProjectsTable />
+      <ProjectsTable projects={projects} />
     </div>
   );
 };

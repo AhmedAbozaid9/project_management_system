@@ -82,3 +82,9 @@ export const projectsTech = [
   "NodeJS",
   "MongoDB",
 ];
+
+export const statusColorMap = {
+  Completed: "success",
+  "In progress": "primary",
+  "Not started": "warning",
+};
