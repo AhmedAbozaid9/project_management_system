@@ -1,11 +1,20 @@
 import React, { useContext } from "react";
 import { Button } from "@nextui-org/react";
+import toast from "react-hot-toast";
 
 import { TimerContext } from "@/contexts/TimerContext";
 
 const StopWatch = () => {
-  const { stopwatch } = useContext(TimerContext);
+  const { timer, stopwatch } = useContext(TimerContext);
   const { time, isPaused, isExpired, start, pause, resume, end } = stopwatch;
+
+  const startStopwatch = () => {
+    if (!timer.isExpired) {
+      toast.error("You must stop the timer first");
+    } else {
+      start();
+    }
+  };
   return (
     <div className="flex flex-col flex-1 justify-center items-center">
       <div className="text-6xl w-72 h-72 gap-2 p-3 rounded-full border-2 border-[#2F2E35] flex items-center justify-center flex-col">
@@ -17,7 +26,7 @@ const StopWatch = () => {
       <div className="flex gap-3 items-center justify-center">
         <Button
           className="bg-primary-purple font-medium my-6 w-32"
-          onPress={isExpired ? start : isPaused ? resume : pause}
+          onPress={isExpired ? startStopwatch : isPaused ? resume : pause}
         >
           {isExpired ? "Start" : isPaused ? "Resume" : "Pause"}
         </Button>

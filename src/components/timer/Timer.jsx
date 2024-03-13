@@ -1,15 +1,24 @@
 import React, { useContext, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { TimerContext } from "@/contexts/TimerContext";
+import toast from "react-hot-toast";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
-  const { timer } = useContext(TimerContext);
+  const { stopwatch, timer } = useContext(TimerContext);
   const { time, isPaused, isExpired, start, pause, resume, end } = timer;
   const handleInputChange = (value) => {
     if (value > 180) setInputTime(180);
     else if (value < 1) setInputTime(1);
     else setInputTime(value);
+  };
+
+  const startTimer = () => {
+    if (!stopwatch.isExpired) {
+      toast.error("You must stop the stopwatch first");
+    } else {
+      start(inputTime * 60);
+    }
   };
 
   return (
@@ -37,9 +46,7 @@ const Timer = () => {
       <div className="flex gap-3 items-center justify-center">
         <Button
           className="bg-primary-purple font-medium my-6 w-32"
-          onPress={
-            isExpired ? () => start(inputTime * 60) : isPaused ? resume : pause
-          }
+          onPress={isExpired ? startTimer : isPaused ? resume : pause}
         >
           {isExpired ? "Start" : isPaused ? "Resume" : "Pause"}
         </Button>

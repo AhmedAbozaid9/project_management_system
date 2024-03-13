@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import { Providers } from "./providers";
 import "./globals.css";
@@ -23,6 +24,15 @@ export default function RootLayout({ children }) {
               <Header />
               {children}
             </main>
+            <Toaster
+              toastOptions={{
+                position: "bottom-center",
+                style: {
+                  color: "white",
+                  backgroundColor: "#151419",
+                },
+              }}
+            />
           </div>
         </Providers>
       </body>
