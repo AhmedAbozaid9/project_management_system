@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@nextui-org/react";
 
-import { useStopwatch } from "@/hooks/useStopwatch";
+import { TimerContext } from "@/contexts/TimerContext";
 
 const StopWatch = () => {
-  const { time, isPaused, isExpired, start, pause, resume, end } = useStopwatch(
-    () => console.log("aaaaaa")
+  const { stopwatch } = useContext(TimerContext);
+  const { time, isPaused, isExpired, start, pause, resume, end } = stopwatch(
+    () => console.log("fuck yeah")
   );
   return (
     <div className="flex flex-col flex-1 justify-center items-center">

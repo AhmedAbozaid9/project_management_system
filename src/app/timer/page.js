@@ -10,6 +10,7 @@ import SelectProject from "@/components/timer/SelectProject";
 
 const Page = () => {
   const [selectedType, setSelectedType] = useState("Timer");
+
   return (
     <section className="w-full p-6 flex max-md:flex-col justify-between">
       <div className="flex flex-1 flex-col gap-5 items-center">

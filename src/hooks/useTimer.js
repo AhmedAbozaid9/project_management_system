@@ -22,6 +22,7 @@ const timerReducer = (state, action) => {
         time: action.payload,
       };
     case "TICK":
+      
       return state.isRunning ? { ...state, time: state.time - 1 } : state;
     default:
       return state;
