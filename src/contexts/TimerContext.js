@@ -8,6 +8,7 @@ const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
   const callback = () => {
+    console.log("this should work once");
   };
 
   const stopwatch = useStopwatch(callback);

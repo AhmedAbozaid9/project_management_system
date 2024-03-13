@@ -42,12 +42,12 @@ export const useTimer = (callback) => {
       timerInterval = setInterval(() => {
         dispatch({ type: "TICK" });
       }, 1000);
-    }
 
-    if (state.time === 0) {
-      dispatch({ type: "END" });
-      document.getElementById("done-sound").play();
-      callback && callback();
+      if (state.time === 0) {
+        dispatch({ type: "END" });
+        document.getElementById("done-sound").play();
+        callback && callback();
+      }
     }
 
     return () => clearInterval(timerInterval);
