@@ -3,7 +3,7 @@ import axios from "axios";
 import InfoCard from "@/components/dashboard/InfoCard";
 
 import { info_cards } from "@/constants";
-import ProjectsTable from "@/components/Tables/SummaryProjectsTable";
+import SummaryProjectsTable from "@/components/Tables/SummaryProjectsTable";
 import LatestRepos from "@/components/dashboard/LatestRepos";
 import { useContext, useEffect, useState } from "react";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
@@ -13,6 +13,15 @@ const GITHUB_USERNAME = "AhmedAbozaid9";
 export default function Home() {
   const [latestRepos, setLatestRepos] = useState();
   const { projects, setProjects } = useContext(ProjectsContext);
+
+  useEffect(() => {
+    !projects &&
+      (async () => {
+        const { data } = await axios.get("/api/projects");
+        setProjects(data);
+      })();
+  }, [projects, setProjects]);
+  console.log(projects);
   useEffect(() => {
     (async () => {
       const { data } = await axios(
@@ -35,7 +44,7 @@ export default function Home() {
         </div>
         <LatestRepos latestRepos={latestRepos} />
       </div>
-      <ProjectsTable />
+      {projects && <SummaryProjectsTable projects={projects} />}
     </main>
   );
 }

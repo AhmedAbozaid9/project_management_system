@@ -12,28 +12,7 @@ import {
 import { columns } from "@/constants";
 import RenderCell from "./RenderCell";
 
-const projects = [
-  {
-    _id: "1",
-    name: "Devvio",
-    tech: "react",
-    type: "website",
-    year: "2023",
-    github: "https://github.com",
-    status: "Completed",
-  },
-  {
-    _id: "2",
-    name: "Lorem_box",
-    tech: "next",
-    type: "small app",
-    year: "2022",
-    github: "https://github.com",
-    status: "In progress",
-  },
-];
-
-const SummaryProjectsTable = () => {
+const SummaryProjectsTable = ({ projects }) => {
   return (
     <div className="pt-5 w-full overflow-x-hidden">
       <Table
