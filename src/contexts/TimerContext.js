@@ -1,13 +1,13 @@
 "use client";
+import React, { createContext } from "react";
+
 import { useStopwatch } from "@/hooks/useStopwatch";
 import { useTimer } from "@/hooks/useTimer";
-import React, { createContext } from "react";
 
 const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
   const callback = () => {
-    console.log("manta 7elw aho");
   };
 
   const stopwatch = useStopwatch(callback);

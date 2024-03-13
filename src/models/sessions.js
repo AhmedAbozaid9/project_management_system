@@ -12,6 +12,9 @@ const SessionTime = new Schema({
     type: String,
     enum: ["Stopwatch", "Timer"],
   },
+  date: {
+    type: Date,
+  },
 });
 
 const Session = models.Session || model("Session", SessionTime);

@@ -33,6 +33,7 @@ export default function RootLayout({ children }) {
                 },
               }}
             />
+            <audio src="/doneSound.mp3" id="done-sound"></audio>
           </div>
         </Providers>
       </body>

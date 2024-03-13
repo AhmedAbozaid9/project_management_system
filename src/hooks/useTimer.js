@@ -46,6 +46,7 @@ export const useTimer = (callback) => {
 
     if (state.time === 0) {
       dispatch({ type: "END" });
+      document.getElementById("done-sound").play();
       callback && callback();
     }
 
