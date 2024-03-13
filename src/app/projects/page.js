@@ -1,19 +1,11 @@
 "use client";
-import axios from "axios";
 
 import ProjectsTable from "@/components/Tables/ProjectsTable";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 const Page = () => {
-  const { projects, setProjects } = useContext(ProjectsContext);
-  useEffect(() => {
-    !projects &&
-      (async () => {
-        const { data } = await axios.get("/api/projects");
-        setProjects(data);
-      })();
-  }, [projects, setProjects]);
+  const { projects } = useContext(ProjectsContext);
 
   return (
     <div className="w-full">

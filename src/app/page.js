@@ -12,15 +12,8 @@ const GITHUB_USERNAME = "AhmedAbozaid9";
 
 export default function Home() {
   const [latestRepos, setLatestRepos] = useState();
-  const { projects, setProjects } = useContext(ProjectsContext);
+  const { projects } = useContext(ProjectsContext);
 
-  useEffect(() => {
-    !projects &&
-      (async () => {
-        const { data } = await axios.get("/api/projects");
-        setProjects(data);
-      })();
-  }, [projects, setProjects]);
   console.log(projects);
   useEffect(() => {
     (async () => {
