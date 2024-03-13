@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { useTimer } from "@/hooks/useTimer";
+import { TimerContext } from "@/contexts/TimerContext";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
-  const { time, isPaused, isExpired, start, pause, resume, end } = useTimer(
-    inputTime * 60,
-    () => console.log("it is done")
-  );
-
+  const { timer } = useContext(TimerContext);
+  const { time, isPaused, isExpired, start, pause, resume, end } = timer;
   const handleInputChange = (value) => {
     if (value > 180) setInputTime(180);
     else if (value < 1) setInputTime(1);
@@ -40,7 +38,9 @@ const Timer = () => {
       <div className="flex gap-3 items-center justify-center">
         <Button
           className="bg-primary-purple font-medium my-6 w-32"
-          onPress={isExpired ? start : isPaused ? resume : pause}
+          onPress={
+            isExpired ? () => start(inputTime * 60) : isPaused ? resume : pause
+          }
         >
           {isExpired ? "Start" : isPaused ? "Resume" : "Pause"}
         </Button>

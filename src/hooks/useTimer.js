@@ -19,19 +19,17 @@ const timerReducer = (state, action) => {
         ...state,
         isRunning: false,
         isExpired: true,
-        time: action.payload,
       };
     case "TICK":
-      
       return state.isRunning ? { ...state, time: state.time - 1 } : state;
     default:
       return state;
   }
 };
 
-export const useTimer = (initialTime, callback) => {
+export const useTimer = () => {
   const [state, dispatch] = useReducer(timerReducer, {
-    time: initialTime,
+    time: 60,
     isRunning: false,
     isPaused: false,
     isExpired: true,
@@ -47,17 +45,18 @@ export const useTimer = (initialTime, callback) => {
     }
 
     if (state.time === 0) {
-      dispatch({ type: "END", payload: initialTime });
+      dispatch({ type: "END" });
       callback && callback();
     }
 
     return () => clearInterval(timerInterval);
-  }, [state.time, initialTime, callback, state.isRunning]);
+  }, [state.time, state.isRunning]);
 
-  const start = () => dispatch({ type: "START", payload: initialTime });
+  const start = (initialTime) =>
+    dispatch({ type: "START", payload: initialTime });
   const pause = () => dispatch({ type: "PAUSE" });
   const resume = () => dispatch({ type: "RESUME" });
-  const end = () => dispatch({ type: "END", payload: initialTime });
+  const end = () => dispatch({ type: "END" });
 
   return { ...state, start, pause, resume, end };
 };
