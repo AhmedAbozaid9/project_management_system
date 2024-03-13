@@ -14,6 +14,7 @@ const Page = () => {
     })();
   }, [setProjects]);
   console.log(projects);
+  
   return (
     <div className="w-full">
       {projects && <ProjectsTable projects={projects} />}
