@@ -6,8 +6,12 @@ import React, { createContext } from "react";
 const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
-  const stopwatch = useStopwatch();
-  const timer = useTimer();
+  const callback = () => {
+    console.log("manta 7elw aho");
+  };
+
+  const stopwatch = useStopwatch(callback);
+  const timer = useTimer(callback);
 
   return (
     <TimerContext.Provider value={{ timer, stopwatch }}>

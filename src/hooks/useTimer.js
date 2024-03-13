@@ -27,7 +27,7 @@ const timerReducer = (state, action) => {
   }
 };
 
-export const useTimer = () => {
+export const useTimer = (callback) => {
   const [state, dispatch] = useReducer(timerReducer, {
     time: 60,
     isRunning: false,
@@ -50,13 +50,16 @@ export const useTimer = () => {
     }
 
     return () => clearInterval(timerInterval);
-  }, [state.time, state.isRunning]);
+  }, [state.time, callback, state.isRunning]);
 
   const start = (initialTime) =>
     dispatch({ type: "START", payload: initialTime });
   const pause = () => dispatch({ type: "PAUSE" });
   const resume = () => dispatch({ type: "RESUME" });
-  const end = () => dispatch({ type: "END" });
+  const end = () => {
+    dispatch({ type: "END" });
+    callback();
+  };
 
   return { ...state, start, pause, resume, end };
 };

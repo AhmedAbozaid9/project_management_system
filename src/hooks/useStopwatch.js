@@ -28,7 +28,7 @@ const timerReducer = (state, action) => {
   }
 };
 
-export const useStopwatch = () => {
+export const useStopwatch = (callback) => {
   const [state, dispatch] = useReducer(timerReducer, {
     time: 0,
     isRunning: false,
@@ -51,8 +51,7 @@ export const useStopwatch = () => {
   const start = () => dispatch({ type: "START" });
   const pause = () => dispatch({ type: "PAUSE" });
   const resume = () => dispatch({ type: "RESUME" });
-  const end = (callback) => {
-    console.log(callback);
+  const end = () => {
     dispatch({ type: "END" });
     callback && callback();
   };

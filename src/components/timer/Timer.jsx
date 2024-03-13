@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Button } from "@nextui-org/react";
-import { useTimer } from "@/hooks/useTimer";
 import { TimerContext } from "@/contexts/TimerContext";
 
 const Timer = () => {
