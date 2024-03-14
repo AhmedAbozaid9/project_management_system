@@ -11,11 +11,10 @@ const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
   const { currentProject } = useContext(ProjectsContext);
-
   const callback = async (time, type) => {
     if (currentProject) {
       if (time < 60) {
-        toast.error("Cannot save the time if it's less than a minute");
+        toast.error("Cannot save the session if it's less than a minute");
       } else {
         await axios.post("/api/sessions/new", {
           time,
