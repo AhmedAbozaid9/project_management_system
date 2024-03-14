@@ -43,10 +43,14 @@ export const useStopwatch = (callback) => {
       timerInterval = setInterval(() => {
         dispatch({ type: "TICK" });
       }, 1000);
+
+      if (state.time === 10800) {
+        dispatch({ type: "END" });
+      }
     }
 
     return () => clearInterval(timerInterval);
-  }, [state.isRunning]);
+  }, [state.time, state.isRunning]);
 
   const start = () => dispatch({ type: "START" });
   const pause = () => dispatch({ type: "PAUSE" });
