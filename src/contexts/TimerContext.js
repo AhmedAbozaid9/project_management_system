@@ -23,6 +23,7 @@ const TimerContextProvider = ({ children }) => {
         project: [...currentProject][0],
         date: new Date(),
       });
+      toast.success("The session has been saved successfully");
     }
   };
 
