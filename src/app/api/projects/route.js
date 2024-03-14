@@ -17,7 +17,6 @@ export const GET = async (req) => {
     const projects = await Project.find({})
       .skip(startIndex)
       .limit(projectsPerPage);
-    console.log(projects);
     return new Response(JSON.stringify(projects), { status: 200 });
   } catch (e) {
     return new Response("Failed to get the projects", { status: 500 });
