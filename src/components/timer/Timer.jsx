@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Button } from "@nextui-org/react";
-import { TimerContext } from "@/contexts/TimerContext";
 import toast from "react-hot-toast";
+
+import { secondsToDisplay } from "@/utils";
+import { TimerContext } from "@/contexts/TimerContext";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
@@ -38,8 +40,7 @@ const Timer = () => {
           </>
         ) : (
           <div>
-            {Math.floor(time / 60) ? Math.floor(time / 60) : "00"}:
-            {time % 60 ? time % 60 : "00"}{" "}
+            {secondsToDisplay(time).minutes}:{secondsToDisplay(time).seconds}
           </div>
         )}
       </div>
