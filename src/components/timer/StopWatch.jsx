@@ -4,8 +4,11 @@ import toast from "react-hot-toast";
 
 import { secondsToDisplay } from "@/utils";
 import { TimerContext } from "@/contexts/TimerContext";
+import { ProjectsContext } from "@/contexts/ProjectsContext";
 
 const StopWatch = () => {
+  const { currentProject } = useContext(ProjectsContext);
+
   const { timer, stopwatch } = useContext(TimerContext);
   const { time, isPaused, isExpired, start, pause, resume, end } = stopwatch;
 
@@ -15,7 +18,11 @@ const StopWatch = () => {
     } else {
       start();
     }
+    if (!currentProject?.size) {
+      toast.error("the session will not be saved if you didn't pick a project");
+    }
   };
+
   return (
     <div className="flex flex-col flex-1 justify-center items-center">
       <div className="text-6xl w-72 h-72 gap-2 p-3 rounded-full border-2 border-[#2F2E35] flex items-center justify-center flex-col">

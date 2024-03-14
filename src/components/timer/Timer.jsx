@@ -4,11 +4,15 @@ import toast from "react-hot-toast";
 
 import { secondsToDisplay } from "@/utils";
 import { TimerContext } from "@/contexts/TimerContext";
+import { ProjectsContext } from "@/contexts/ProjectsContext";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
   const { stopwatch, timer } = useContext(TimerContext);
   const { time, isPaused, isExpired, start, pause, resume, end } = timer;
+
+  const { currentProject } = useContext(ProjectsContext);
+
   const handleInputChange = (value) => {
     if (value > 180) setInputTime(180);
     else if (value < 1) setInputTime(1);
@@ -20,6 +24,9 @@ const Timer = () => {
       toast.error("You must stop the stopwatch first");
     } else {
       start(inputTime * 60);
+    }
+    if (!currentProject?.size) {
+      toast.error("the session will not be saved if you didn't pick a project");
     }
   };
 
