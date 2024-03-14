@@ -17,13 +17,24 @@ const MyModal = () => {
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        className="bg-primary-purple my-1 font-medium"
-        radius="sm"
-      >
-        Add New
-      </Button>
+      <>
+        <Button
+          onClick={onOpen}
+          className="bg-primary-purple sm:my-1 my-2 font-medium sm:hidden"
+          radius="sm"
+          size="sm"
+        >
+          Add New
+        </Button>
+        <Button
+          onClick={onOpen}
+          className="bg-primary-purple sm:my-1 my-2 font-medium max-sm:hidden"
+          radius="sm"
+          size="md"
+        >
+          Add New
+        </Button>
+      </>
       <Modal
         size="5xl"
         isOpen={isOpen}

@@ -27,7 +27,7 @@ const Page = () => {
   });
 
   return (
-    <section className="w-full p-6 flex max-md:flex-col justify-between">
+    <section className="w-full sm:p-6 p-3 flex max-md:flex-col justify-between">
       <div className="flex flex-1 flex-col gap-5 items-center">
         <SelectProject />
 

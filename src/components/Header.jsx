@@ -15,31 +15,35 @@ const Header = () => {
     window.open("https://simple-portfolio-six-psi.vercel.app/", "_blank");
   };
 
-  const addProject = () => {
-    console.log("aaa");
-  };
-
   return (
     <header className="flex gap-3 w-full items-center justify-stretch">
       <MobileNavigation />
       <Modal />
 
-      <Button
-        variant="bordered"
-        onPress={openPortfolio}
-        radius="sm"
-        className="max-sm:hidden"
-      >
-        Visit Portfolio
-      </Button>
-      <Button
-        variant="bordered"
-        onPress={openPortfolio}
-        radius="sm"
-        className="sm:hidden"
-      >
-        <FaExternalLinkAlt className="sm:hidden " onClick={openPortfolio} />
-      </Button>
+      <>
+        <Button
+          variant="bordered"
+          onPress={openPortfolio}
+          radius="sm"
+          size="sm"
+          className="sm:hidden"
+        >
+          <FaExternalLinkAlt className="sm:hidden" />
+          <span className="max-sm:hidden">Visit Portfolio</span>
+        </Button>
+
+        <Button
+          variant="bordered"
+          onPress={openPortfolio}
+          radius="sm"
+          size="md"
+          className="max-sm:hidden"
+        >
+          <FaExternalLinkAlt className="sm:hidden" />
+          <span className="max-sm:hidden">Visit Portfolio</span>
+        </Button>
+      </>
+
       <Avatar
         size="sm"
         className="ml-auto"
