@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 
 const SessionTime = new Schema({
-  session: {
+  time: {
     type: Number,
   },
   project: {

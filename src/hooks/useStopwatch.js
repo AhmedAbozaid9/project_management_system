@@ -46,18 +46,19 @@ export const useStopwatch = (callback) => {
 
       if (state.time === 10800) {
         dispatch({ type: "END" });
+        callback && callback(state.time, "Stopwatch");
       }
     }
 
     return () => clearInterval(timerInterval);
-  }, [state.time, state.isRunning]);
+  }, [state.time, callback, state.isRunning]);
 
   const start = () => dispatch({ type: "START" });
   const pause = () => dispatch({ type: "PAUSE" });
   const resume = () => dispatch({ type: "RESUME" });
   const end = () => {
     dispatch({ type: "END" });
-    callback && callback();
+    callback && callback(state.time, "Stopwatch");
   };
 
   return { ...state, start, pause, resume, end };

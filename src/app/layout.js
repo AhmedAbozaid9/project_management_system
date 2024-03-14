@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
             </main>
             <Toaster
               toastOptions={{
-                position: "bottom-center",
+                position: "top-center",
                 style: {
                   color: "white",
                   backgroundColor: "#151419",

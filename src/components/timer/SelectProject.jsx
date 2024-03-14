@@ -3,11 +3,13 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
 
 const SelectProject = () => {
-  const { projects } = useContext(ProjectsContext);
-  
+  const { projects, currentProject, setCurrentProject } =
+    useContext(ProjectsContext);
 
   return (
     <Select
+      selectedKeys={currentProject}
+      onSelectionChange={setCurrentProject}
       size="sm"
       label="Select a project"
       className="max-w-52 py-0"

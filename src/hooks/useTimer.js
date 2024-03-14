@@ -1,5 +1,7 @@
 import { useEffect, useReducer } from "react";
 
+let tempInitialTime;
+
 const timerReducer = (state, action) => {
   switch (action.type) {
     case "START":
@@ -46,20 +48,22 @@ export const useTimer = (callback) => {
       if (state.time === 0) {
         dispatch({ type: "END" });
         document.getElementById("done-sound").play();
-        callback && callback();
+        callback && callback(tempInitialTime - state.time, "Timer");
       }
     }
 
     return () => clearInterval(timerInterval);
   }, [state.time, callback, state.isRunning]);
 
-  const start = (initialTime) =>
+  const start = (initialTime) => {
     dispatch({ type: "START", payload: initialTime });
+    tempInitialTime = initialTime;
+  };
   const pause = () => dispatch({ type: "PAUSE" });
   const resume = () => dispatch({ type: "RESUME" });
   const end = () => {
     dispatch({ type: "END" });
-    callback();
+    callback(tempInitialTime - state.time, "Timer");
   };
 
   return { ...state, start, pause, resume, end };
