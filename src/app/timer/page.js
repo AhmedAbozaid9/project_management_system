@@ -14,6 +14,7 @@ const Page = () => {
   const [sessions, setSessions] = useState();
   const [totalTime, setTotalTime] = useState();
   const [totalCount, setTotalCount] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -21,6 +22,7 @@ const Page = () => {
       setSessions(data.sessions);
       setTotalTime(data.totalTime);
       setTotalCount(data.totalCount);
+      setIsLoading(false);
     })();
   });
 
@@ -47,6 +49,7 @@ const Page = () => {
         sessions={sessions}
         totalTime={totalTime}
         totalCount={totalCount}
+        isLoading={isLoading}
       />
     </section>
   );
