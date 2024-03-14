@@ -23,10 +23,12 @@ const Timer = () => {
     if (!stopwatch.isExpired) {
       toast.error("You must stop the stopwatch first");
     } else {
+      if (!currentProject?.size) {
+        toast.error(
+          "the session will not be saved if you didn't pick a project"
+        );
+      }
       start(inputTime * 60);
-    }
-    if (!currentProject?.size) {
-      toast.error("the session will not be saved if you didn't pick a project");
     }
   };
 
