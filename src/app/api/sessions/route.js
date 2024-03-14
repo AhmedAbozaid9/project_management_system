@@ -34,17 +34,17 @@ export const GET = async (req) => {
 
     const totalTime = await getTotalTime();
 
-    const totalSessionsCount = await Session.find({}).countDocuments();
+    const totalCount = await Session.find({}).countDocuments();
 
     const startIndex = (page - 1) * sessionsPerPage;
     const sessions = await Session.find({})
       .skip(startIndex)
-      .limit(sessionsPerPage);
+      .limit(sessionsPerPage)
+      .populate("project");
 
-    return new Response(
-      JSON.stringify({ sessions, totalTime, totalSessionsCount }),
-      { status: 200 }
-    );
+    return new Response(JSON.stringify({ sessions, totalTime, totalCount }), {
+      status: 200,
+    });
   } catch (e) {
     console.log(e);
     return new Response("Failed to get the sessions", { status: 500 });

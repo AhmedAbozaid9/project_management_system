@@ -32,9 +32,6 @@ const ProjectSchema = new Schema({
   website: {
     type: String,
   },
-  sessions: {
-    type: Array,
-  },
 });
 
 const Project = models.Project || model("Project", ProjectSchema);

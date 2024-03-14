@@ -1,15 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs, Tab, Divider } from "@nextui-org/react";
 
 import Timer from "@/components/timer/Timer";
 import StopWatch from "@/components/timer/StopWatch";
 import TimerStatistics from "@/components/timer/TimerStatistics";
 import SelectProject from "@/components/timer/SelectProject";
+import axios from "axios";
 
 const Page = () => {
   const [selectedType, setSelectedType] = useState("Timer");
+  const [sessions, setSessions] = useState();
+  const [totalTime, setTotalTime] = useState();
+  const [totalCount, setTotalCount] = useState();
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get("/api/sessions");
+      setSessions(data.sessions);
+      setTotalTime(data.totalTime);
+      setTotalCount(data.totalCount);
+    })();
+  });
 
   return (
     <section className="w-full p-6 flex max-md:flex-col justify-between">
@@ -30,7 +43,11 @@ const Page = () => {
         {selectedType === "Timer" ? <Timer /> : <StopWatch />}
       </div>
       <Divider orientation="vertical" className="max-md:hidden mx-5" />
-      <TimerStatistics />
+      <TimerStatistics
+        sessions={sessions}
+        totalTime={totalTime}
+        totalCount={totalCount}
+      />
     </section>
   );
 };
