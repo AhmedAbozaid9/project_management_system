@@ -4,14 +4,11 @@ import Image from "@/models/image";
 
 export const POST = async (request) => {
   const projectDetails = await request.json();
-  console.log(projectDetails);
 
   try {
     connectToDB();
     const newImage = new Image({ image: projectDetails.image });
-    console.log(newImage);
     const savedImage = await newImage.save();
-    console.log(savedImage);
     const newProject = new Project({
       ...projectDetails,
       image: savedImage._id,

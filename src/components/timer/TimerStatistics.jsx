@@ -9,8 +9,8 @@ const TimerStatistics = () => {
           <p className="text-large font-medium py-2">15 Hrs</p>
         </div>
         <div className="p-5 flex-1 bg-main-dark-bg rounded-md">
-          <p className="text-secondary-text text-sm">Total focus time</p>
-          <p className="text-large font-medium py-2">15 Hrs</p>
+          <p className="text-secondary-text text-sm">Total sessions</p>
+          <p className="text-large font-medium py-2">15 sessions</p>
         </div>
       </div>
       <p className="font-medium">Recent sessions</p>
