@@ -1,15 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { Avatar, Button } from "@nextui-org/react";
+import { Avatar, Button, Chip } from "@nextui-org/react";
 
 import Modal from "./addProject/Modal";
 import MobileNavigation from "./Navigation/MobileNavigation";
 import { useSession } from "next-auth/react";
+import { TimerContext } from "@/contexts/TimerContext";
 
 const Header = () => {
   const { data: session } = useSession();
+  const { timer, stopwatch } = useContext(TimerContext);
 
   const openPortfolio = () => {
     window.open("https://simple-portfolio-six-psi.vercel.app/", "_blank");
@@ -44,12 +46,11 @@ const Header = () => {
         </Button>
       </>
 
-      <Avatar
-        size="sm"
-        className="ml-auto"
-        name={session?.user.name}
-        src={session?.user.image}
-      />
+      <div className="ml-auto flex gap-3 items-center">
+        {!stopwatch.isExpired && <Chip color="success">{stopwatch.time}</Chip>}
+        {!timer.isExpired && <Chip color="success">{timer.time}</Chip>}
+        <Avatar size="sm" name={session?.user.name} src={session?.user.image} />
+      </div>
     </header>
   );
 };

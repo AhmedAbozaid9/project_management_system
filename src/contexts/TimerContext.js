@@ -11,6 +11,7 @@ const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
   const { currentProject } = useContext(ProjectsContext);
+  
   const callback = async (time, type) => {
     if (time < 60) {
       toast.error("Cannot save the time if it's less than a minute");
