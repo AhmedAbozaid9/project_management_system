@@ -6,10 +6,12 @@ import { useTimer } from "@/hooks/useTimer";
 import axios from "axios";
 import { ProjectsContext } from "./ProjectsContext";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
 
 const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
+  const { data: session } = useSession();
   const { currentProject } = useContext(ProjectsContext);
   const callback = async (time, type) => {
     if (currentProject) {
@@ -21,6 +23,7 @@ const TimerContextProvider = ({ children }) => {
           type,
           project: [...currentProject][0],
           date: new Date(),
+          user: session.user._id,
         });
         toast.success("The session has been saved successfully");
       }

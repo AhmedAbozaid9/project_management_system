@@ -15,6 +15,10 @@ const SessionTime = new Schema({
   date: {
     type: Date,
   },
+  user: {
+    type: String,
+    ref: "User",
+  },
 });
 
 const Session = models.Session || model("Session", SessionTime);
