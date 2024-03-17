@@ -38,14 +38,15 @@ export const GET = async (req, { params }) => {
   try {
     await connectToDB();
 
-    const totalTime = await getTotalTime();
+    const totalTime = await getTotalTime(userId);
 
     const totalCount = await Session.find({}).countDocuments();
 
     const startIndex = (page - 1) * sessionsPerPage;
     const sessions = await Session.find({ user: userId })
       .skip(startIndex)
-      .limit(sessionsPerPage);
+      .limit(sessionsPerPage)
+      .populate("project");
 
     return new Response(JSON.stringify({ sessions, totalTime, totalCount }), {
       status: 200,
