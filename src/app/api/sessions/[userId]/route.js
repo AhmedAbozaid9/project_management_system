@@ -25,7 +25,8 @@ const getTotalTime = async () => {
   }
 };
 
-export const GET = async (req) => {
+export const GET = async (req, { params }) => {
+  const userId = params.userId;
   const url = new URL(req.url);
   const searchParams = new URLSearchParams(url.search);
   const page = parseInt(searchParams.get("page")) || 1;
@@ -37,10 +38,9 @@ export const GET = async (req) => {
     const totalCount = await Session.find({}).countDocuments();
 
     const startIndex = (page - 1) * sessionsPerPage;
-    const sessions = await Session.find({})
+    const sessions = await Session.find({ user: userId })
       .skip(startIndex)
       .limit(sessionsPerPage)
-      .populate("project");
 
     return new Response(JSON.stringify({ sessions, totalTime, totalCount }), {
       status: 200,
