@@ -14,26 +14,19 @@ const TimerContextProvider = ({ children }) => {
   const { data: session } = useSession();
   const { currentProject } = useContext(ProjectsContext);
   const callback = async (time, type) => {
-    if (!session) {
+    if (!session || !currentProject || time < 60) {
+      console.log(session, currentProject, time);
       return;
     }
 
-    if (currentProject) {
-      console.log(session);
-      if (time < 60) {
-        toast.error("Cannot save the session if it's less than a minute");
-      } else {
-        console.log("user");
-        await axios.post("/api/sessions/new", {
-          time,
-          type,
-          project: [...currentProject][0],
-          date: new Date(),
-          user: session.user.id,
-        });
-        toast.success("The session has been saved successfully");
-      }
-    }
+    await axios.post("/api/sessions/new", {
+      time,
+      type,
+      project: [...currentProject][0],
+      date: new Date(),
+      user: session.user.id,
+    });
+    toast.success("The session has been saved successfully");
   };
 
   const stopwatch = useStopwatch(callback);

@@ -27,7 +27,7 @@ const Page = () => {
       setTotalCount(data.totalCount);
       setIsLoading(false);
     })();
-  }, []);
+  }, [session]);
 
   return (
     <section className="w-full sm:p-6 p-3 flex max-md:flex-col justify-between">
