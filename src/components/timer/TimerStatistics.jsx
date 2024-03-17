@@ -33,7 +33,7 @@ const TimerStatistics = ({ sessions, totalTime, totalCount, isLoading }) => {
         </div>
       </div>
       <p className="font-medium">Recent sessions</p>
-      <div className=" flex flex-col justify-center gap-3">
+      <div className=" flex flex-col gap-3 md:overflow-y-scroll md:h-80 md:pr-2">
         {isLoading ? (
           <>
             <Skeleton className="rounded-md">

@@ -5,12 +5,14 @@ import toast from "react-hot-toast";
 import { secondsToDisplay } from "@/utils";
 import { TimerContext } from "@/contexts/TimerContext";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
+import { useSession } from "next-auth/react";
 
 const Timer = () => {
   const [inputTime, setInputTime] = useState(1);
   const { stopwatch, timer } = useContext(TimerContext);
   const { time, isPaused, isExpired, start, pause, resume, end } = timer;
 
+  const { data: session } = useSession();
   const { currentProject } = useContext(ProjectsContext);
 
   const handleInputChange = (value) => {
@@ -21,15 +23,14 @@ const Timer = () => {
 
   const startTimer = () => {
     if (!stopwatch.isExpired) {
-      toast.error("You must stop the stopwatch first");
-    } else {
-      if (!currentProject?.size) {
-        toast.error(
-          "the session will not be saved if you didn't pick a project"
-        );
-      }
-      start(inputTime * 60);
+      toast.error("You must stop the timer first");
+      return;
+    } else if (!session) {
+      toast.error("you are not logged in, the session will not be saved");
+    } else if (!currentProject?.size) {
+      toast.error("the session will not be saved if you didn't pick a project");
     }
+    start(inputTime * 60);
   };
 
   return (
