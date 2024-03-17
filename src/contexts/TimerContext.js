@@ -12,7 +12,6 @@ const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
   const { data: session } = useSession();
-  console.log(session);
   const { currentProject } = useContext(ProjectsContext);
   const callback = async (time, type) => {
     if (!session) {
@@ -20,15 +19,17 @@ const TimerContextProvider = ({ children }) => {
     }
 
     if (currentProject) {
+      console.log(session);
       if (time < 60) {
         toast.error("Cannot save the session if it's less than a minute");
       } else {
+        console.log("user");
         await axios.post("/api/sessions/new", {
           time,
           type,
           project: [...currentProject][0],
           date: new Date(),
-          user: session.user._id,
+          user: session.user.id,
         });
         toast.success("The session has been saved successfully");
       }
