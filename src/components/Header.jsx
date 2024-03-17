@@ -63,7 +63,7 @@ const Header = () => {
 
       <div className="ml-auto flex gap-3 items-center">
         {isTimer && (
-          <Chip color="success">
+          <Chip color="success" size="sm">
             {minutes}:{seconds}
           </Chip>
         )}
