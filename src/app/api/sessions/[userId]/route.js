@@ -3,9 +3,14 @@ import Session from "@/models/session";
 
 const sessionsPerPage = 20;
 
-const getTotalTime = async () => {
+const getTotalTime = async (userId) => {
   try {
     const result = await Session.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
       {
         $group: {
           _id: null,
@@ -40,7 +45,7 @@ export const GET = async (req, { params }) => {
     const startIndex = (page - 1) * sessionsPerPage;
     const sessions = await Session.find({ user: userId })
       .skip(startIndex)
-      .limit(sessionsPerPage)
+      .limit(sessionsPerPage);
 
     return new Response(JSON.stringify({ sessions, totalTime, totalCount }), {
       status: 200,

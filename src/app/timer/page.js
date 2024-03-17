@@ -8,8 +8,11 @@ import StopWatch from "@/components/timer/StopWatch";
 import TimerStatistics from "@/components/timer/TimerStatistics";
 import SelectProject from "@/components/timer/SelectProject";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 const Page = () => {
+  const { data: session } = useSession();
+
   const [selectedType, setSelectedType] = useState("Timer");
   const [sessions, setSessions] = useState();
   const [totalTime, setTotalTime] = useState();
@@ -18,7 +21,7 @@ const Page = () => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/sessions");
+      const { data } = await axios.get(`/api/sessions/${session?.user.id}`);
       setSessions(data.sessions);
       setTotalTime(data.totalTime);
       setTotalCount(data.totalCount);
