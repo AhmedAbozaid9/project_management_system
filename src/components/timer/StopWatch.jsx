@@ -11,17 +11,17 @@ const StopWatch = () => {
 
   const { timer, stopwatch } = useContext(TimerContext);
   const { time, isPaused, isExpired, start, pause, resume, end } = stopwatch;
+  
   const startStopwatch = () => {
     if (!timer.isExpired) {
       toast.error("You must stop the timer first");
-    } else {
-      if (!currentProject?.size) {
-        toast.error(
-          "the session will not be saved if you didn't pick a project"
-        );
-      }
-      start();
+      return;
+    } else if (!session) {
+      toast.error("you are not logged in, the session will not be saved");
+    } else if (!currentProject?.size) {
+      toast.error("the session will not be saved if you didn't pick a project");
     }
+    start();
   };
   return (
     <div className="flex flex-col flex-1 justify-center items-center">

@@ -12,8 +12,13 @@ const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
   const { data: session } = useSession();
+  console.log(session);
   const { currentProject } = useContext(ProjectsContext);
   const callback = async (time, type) => {
+    if (!session) {
+      return;
+    }
+
     if (currentProject) {
       if (time < 60) {
         toast.error("Cannot save the session if it's less than a minute");
