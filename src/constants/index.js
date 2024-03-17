@@ -22,19 +22,22 @@ export const links = [
 
 export const info_cards = [
   {
-    title: "planning for",
+    title: "Planning for",
     color: "#E074ED",
     icon: <FaRegClipboard size={28} />,
+    name: "notStarted",
   },
   {
     title: "Working on",
     color: "#B8ECED",
     icon: <LuListChecks size={28} />,
+    name: "inProgress",
   },
   {
     title: "Completed",
     color: "#ED74BD",
     icon: <LuGoal size={28} />,
+    name: "done",
   },
 ];
 

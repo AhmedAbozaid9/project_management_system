@@ -12,15 +12,23 @@ const GITHUB_USERNAME = "AhmedAbozaid9";
 
 export default function Home() {
   const [latestRepos, setLatestRepos] = useState();
+  const [summary, setSummary] = useState();
+
   const { projects } = useContext(ProjectsContext);
 
-  console.log(projects);
   useEffect(() => {
     (async () => {
-      const { data } = await axios(
+      const { data } = await axios.get(
         `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=3`
       );
       setLatestRepos(data.map((project) => project.name));
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get("/api/projects/summary");
+      setSummary(data);
     })();
   }, []);
 
@@ -28,7 +36,7 @@ export default function Home() {
     <main className="flex flex-1 w-full flex-col items-center">
       <div className="flex items-center flex-col sm:flex-row min-w-full gap-5 py-5">
         {info_cards.map((info_card) => (
-          <InfoCard key={info_card.title} {...info_card} number={5} />
+          <InfoCard key={info_card.key} {...info_card} summary={summary} />
         ))}
       </div>
       <div className="flex gap-5 w-full max-sm:flex-col">
