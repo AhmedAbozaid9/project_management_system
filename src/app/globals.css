@@ -32,3 +32,25 @@ body {
 .file-input::file-selector-button {
   @apply rounded-md border-none mr-2 bg-primary-purple py-1 px-2;
 }
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #b0578d #151419;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #151419;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #b0578d;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
