@@ -33,24 +33,26 @@ body {
   @apply rounded-md border-none mr-2 bg-primary-purple py-1 px-2;
 }
 
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #1f1e25 #151419;
-}
+@media only screen and (min-width: 768px) {
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #151419 #2f2e35;
+  }
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 10px;
-}
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
 
-*::-webkit-scrollbar-track {
-  background: #2f2e35;
-}
+  *::-webkit-scrollbar-track {
+    background: #2f2e35;
+  }
 
-*::-webkit-scrollbar-thumb {
-  background-color: #1f1e25;
-  border-radius: 10px;
-  border: 3px solid #ffffff;
+  *::-webkit-scrollbar-thumb {
+    background-color: #151419;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
 }
