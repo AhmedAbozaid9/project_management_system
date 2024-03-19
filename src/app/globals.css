@@ -37,7 +37,7 @@ body {
 /* Firefox */
 * {
   scrollbar-width: auto;
-  scrollbar-color: #b0578d #151419;
+  scrollbar-color: #1f1e25 #151419;
 }
 
 /* Chrome, Edge, and Safari */
@@ -50,7 +50,7 @@ body {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #b0578d;
+  background-color: #1f1e25;
   border-radius: 10px;
   border: 3px solid #ffffff;
 }
