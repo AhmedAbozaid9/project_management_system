@@ -8,26 +8,14 @@ const TimerStatistics = ({ sessions, totalTime, totalCount, isLoading }) => {
         <div className="p-5 flex-1 bg-main-dark-bg rounded-md">
           <p className="text-secondary-text text-sm">Total time</p>
           <div className="text-large font-medium py-2 flex items-center gap-2">
-            {isLoading ? (
-              <Skeleton>
-                <div className="w-4 h-3" />
-              </Skeleton>
-            ) : (
-              Math.round(totalTime / 3600)
-            )}
+            {Math.round(totalTime / 3600) || 0}
             <span>Hrs</span>
           </div>
         </div>
         <div className="p-5 flex-1 bg-main-dark-bg rounded-md">
           <p className="text-secondary-text text-sm">Total sessions</p>
           <div className="text-large font-medium py-2 flex items-center gap-2">
-            {isLoading ? (
-              <Skeleton>
-                <div className="w-4 h-3" />
-              </Skeleton>
-            ) : (
-              totalCount
-            )}{" "}
+            {totalCount || 0}
             <span>sessions</span>
           </div>
         </div>
