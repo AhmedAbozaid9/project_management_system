@@ -5,13 +5,15 @@ import toast from "react-hot-toast";
 import { secondsToDisplay } from "@/utils";
 import { TimerContext } from "@/contexts/TimerContext";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
+import { useSession } from "next-auth/react";
 
 const StopWatch = () => {
   const { currentProject } = useContext(ProjectsContext);
+  const { data: session } = useSession();
 
   const { timer, stopwatch } = useContext(TimerContext);
   const { time, isPaused, isExpired, start, pause, resume, end } = stopwatch;
-  
+
   const startStopwatch = () => {
     if (!timer.isExpired) {
       toast.error("You must stop the timer first");
