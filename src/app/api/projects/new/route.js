@@ -1,17 +1,17 @@
 import { connectToDB } from "@/utils/database";
 import Project from "@/models/project";
-import Image from "@/models/image";
+import {uploadImage} from "@/utils/uploadImage";
 
 export const POST = async (request) => {
   const projectDetails = await request.json();
 
   try {
     connectToDB();
-    const newImage = new Image({ image: projectDetails.image });
-    const savedImage = await newImage.save();
+   const image_url = await uploadImage(projectDetails.image)
+    console.log(image_url)
     const newProject = new Project({
       ...projectDetails,
-      image: savedImage._id,
+      image: image_url,
     });
     await newProject.save();
 

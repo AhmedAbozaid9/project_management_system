@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const InfoCard = ({ title, color, icon, name, summary }) => {
   console.log(summary);
@@ -11,6 +12,7 @@ const InfoCard = ({ title, color, icon, name, summary }) => {
         </p>
         {icon}
       </div>
+        <Image src={'https://res.cloudinary.com/ddq1krznj/image/upload/f_auto,q_auto/shoes?_a=BAMABkRg0.png'} alt={'test'} width={300} height={300} />
     </div>
   );
 };
