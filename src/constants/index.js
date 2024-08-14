@@ -46,15 +46,6 @@ export const columns = [
     key: "title",
     label: "Name",
   },
-
-  {
-    key: "tech",
-    label: "Tech",
-  },
-  {
-    key: "type",
-    label: "Type",
-  },
   {
     key: "date",
     label: "Year",

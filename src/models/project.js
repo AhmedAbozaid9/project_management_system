@@ -9,18 +9,13 @@ const ProjectSchema = new Schema({
   date: {
     type: Date,
   },
-  tech: {
-    type: Array,
-    required: [true, "techs are required"],
-  },
+
   status: {
     type: String,
     enum: ["Not started", "In progress", "Done"],
     default: "Not started",
   },
-  type: {
-    type: String,
-  },
+
   image: {
     type: String,
     ref: "Image",

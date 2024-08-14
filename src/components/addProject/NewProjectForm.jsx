@@ -3,13 +3,9 @@ import { Input, Skeleton } from "@nextui-org/react";
 import Image from "next/image";
 import axios from "axios";
 
-import MultiSelect from "./MultiSelect";
-import Select from "./Select";
 
 const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
   const [title, setTitle] = useState("");
-  const [tech, setTech] = useState(new Set([]));
-  const [type, setType] = useState("");
   const [github, setGithub] = useState("");
   const [website, setWebsite] = useState("");
 
@@ -37,8 +33,6 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
       await axios.post("/api/projects/new", {
         title,
         date: new Date(),
-        tech: [...tech],
-        type: type.currentKey,
         github,
         website,
         image,
@@ -66,18 +60,7 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
           onChange={(e) => setTitle(e.target.value)}
           isRequired
         />
-        <MultiSelect
-          label="Project tech"
-          placeholder="select the technologies"
-          values={tech}
-          setValues={setTech}
-        />
-        <Select
-          label="Project type"
-          placeholder="select the project type"
-          value={type}
-          setValue={setType}
-        />
+
         <Input
           label="Deployed link"
           placeholder="Enter the link to the project itself"
