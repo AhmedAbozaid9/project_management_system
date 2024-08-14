@@ -11,8 +11,10 @@ import { useSession } from "next-auth/react";
 const TimerContext = createContext();
 
 const TimerContextProvider = ({ children }) => {
+  
   const { data: session } = useSession();
   const { currentProject } = useContext(ProjectsContext);
+
   const callback = async (time, type) => {
     if (!session || !currentProject || time < 60) {
       console.log(session, currentProject, time);

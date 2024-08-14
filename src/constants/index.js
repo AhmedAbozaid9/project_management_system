@@ -46,15 +46,6 @@ export const columns = [
     key: "title",
     label: "Name",
   },
-
-  {
-    key: "tech",
-    label: "Tech",
-  },
-  {
-    key: "type",
-    label: "Type",
-  },
   {
     key: "date",
     label: "Year",
@@ -91,3 +82,9 @@ export const statusColorMap = {
   "In progress": "primary",
   "Not started": "warning",
 };
+
+export const statusOptions = [
+  { name: "Completed", uid: "completed" },
+  { name: "In progress", uid: "inProgress" },
+  { name: "Not started", uid: "notStarted" },
+];

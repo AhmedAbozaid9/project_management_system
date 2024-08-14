@@ -13,12 +13,7 @@ const RenderCell = ({ project, columnKey }) => {
     switch (columnKey) {
       case "title":
         return <p>{cellValue}</p>;
-      case "tech":
-        return (
-          <p className="text-bold text-sm capitalize text-default-400">
-            {cellValue}
-          </p>
-        );
+
       case "status":
         return (
           <Chip
