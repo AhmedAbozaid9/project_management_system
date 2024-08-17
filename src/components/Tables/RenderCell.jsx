@@ -1,10 +1,11 @@
 import React, { useCallback } from "react";
-import { Chip, Tooltip, CircularProgress } from "@nextui-org/react";
+import {  Tooltip, CircularProgress } from "@nextui-org/react";
 import { FaRegEye } from "react-icons/fa";
 import { LuTrash2 } from "react-icons/lu";
 import Link from "next/link";
 
 import { statusColorMap } from "@/constants";
+import Status from "@/components/general/Status";
 
 const RenderCell = ({ project, columnKey }) => {
   const renderCell = useCallback((project, columnKey) => {
@@ -16,14 +17,7 @@ const RenderCell = ({ project, columnKey }) => {
 
       case "status":
         return (
-          <Chip
-            className="capitalize"
-            color={statusColorMap[project.status]}
-            size="sm"
-            variant="flat"
-          >
-            {cellValue}
-          </Chip>
+         <Status status={cellValue}/>
         );
 
       case "date":

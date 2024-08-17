@@ -1,6 +1,8 @@
 'use client'
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import Status from "@/components/general/Status";
+import ChangeStatus from "@/components/SingleProject/ChangeStatus";
 
 const MainSingleProject = ({projectId}) => {
     const [project, setProject] = useState({});
@@ -13,9 +15,12 @@ const MainSingleProject = ({projectId}) => {
     }, [projectId]);
     console.log(project)
     return (
-        <>
-            <h1>{project.title}</h1>
-        </>
+        <main className="p-2 sm:p-6">
+            <div className="flex items-center gap-3 sm:gap-5">
+                <h1 className="text-2xl sm:text-3xl font-bold">{project.title}</h1>
+                <ChangeStatus currentStatus={project.status}/>
+            </div>
+        </main>
     );
 };
 
