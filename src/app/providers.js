@@ -8,6 +8,7 @@ import { ProjectsContextProvider } from "@/contexts/ProjectsContext";
 import { TimerContextProvider } from "@/contexts/TimerContext";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthContextProvider } from "@/contexts/authContext";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -46,11 +47,13 @@ export function Providers({ children, session }) {
     <SessionProvider session={session}>
       <NextUIProvider>
         <NextThemesProvider attribute="class" defaultTheme="dark">
-          <QueryClientProvider client={queryClient}>
-            <ProjectsContextProvider>
-              <TimerContextProvider>{children}</TimerContextProvider>
-            </ProjectsContextProvider>
-          </QueryClientProvider>
+          <AuthContextProvider>
+            <QueryClientProvider client={queryClient}>
+              <ProjectsContextProvider>
+                <TimerContextProvider>{children}</TimerContextProvider>
+              </ProjectsContextProvider>
+            </QueryClientProvider>
+          </AuthContextProvider>
         </NextThemesProvider>
       </NextUIProvider>
     </SessionProvider>

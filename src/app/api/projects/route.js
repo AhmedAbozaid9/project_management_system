@@ -9,12 +9,13 @@ export const GET = async (req) => {
   const url = new URL(req.url);
   const searchParams = new URLSearchParams(url.search);
   const page = parseInt(searchParams.get("page")) || 1;
+  const userId = searchParams.get("userId");
 
   try {
     await connectToDB();
     const startIndex = (page - 1) * projectsPerPage;
 
-    const projects = await Project.find({})
+    const projects = await Project.find({userId})
       .skip(startIndex)
       .limit(projectsPerPage);
     return new Response(JSON.stringify(projects), { status: 200 });
