@@ -14,10 +14,10 @@ import RenderCell from "./RenderCell";
 import Loading from "../general/Loading";
 
 const SummaryProjectsTable = ({ projects }) => {
-  console.log(projects);
+  console.log()
   return (
     <>
-      {projects.length ? (
+      {projects ? (
         <div className="pt-5 w-full overflow-x-hidden">
           <Table
             area-label="Projects table"

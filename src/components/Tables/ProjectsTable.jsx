@@ -32,6 +32,7 @@ const ProjectsTable = ({ projects }) => {
       statusFilter !== "all" &&
       Array.from(statusFilter).length !== statusOptions.length
     ) {
+      console.log(statusFilter);
       filteredProjects = filteredProjects.filter((project) =>
         Array.from(statusFilter).includes(project.status)
       );

@@ -21,6 +21,8 @@ const TopContent = ({
   setStatusFilter,
   length,
 }) => {
+  console.log(statusFilter);
+  console.log(statusOptions);
   const topContent = React.useMemo(() => {
     return (
       <div className="flex flex-col gap-4">
@@ -53,7 +55,7 @@ const TopContent = ({
                 onSelectionChange={setStatusFilter}
               >
                 {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
+                  <DropdownItem key={status.name} className="capitalize">
                     {status.name}
                   </DropdownItem>
                 ))}
