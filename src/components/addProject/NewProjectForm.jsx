@@ -1,10 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { Input, Skeleton } from "@nextui-org/react";
 import Image from "next/image";
 import axios from "axios";
+import { ProjectsContext } from "@/contexts/ProjectsContext";
 import { useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
+  const { refetch } = useContext(ProjectsContext);
   const session = useSession();
   const [title, setTitle] = useState("");
   const [github, setGithub] = useState("");
@@ -31,19 +34,24 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post("/api/projects/new", {
-        userId: session.data.user.id,
-        projectDetails: {
-          title,
-          date: new Date(),
-          github,
-          website,
-          image,
-        },
-      });
+      if (session.data) {
+        await axios.post("/api/projects/new", {
+          userId: session?.data?.user.id,
+          projectDetails: {
+            title,
+            date: new Date(),
+            github,
+            website,
+            image,
+          },
+        });
+      } else {
+        toast.error("you are not logged in");
+      }
     } catch (e) {
       console.log(e);
     } finally {
+      refetch();
       setIsSubmitting(false);
       closeModal();
     }

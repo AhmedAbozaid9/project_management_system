@@ -4,7 +4,6 @@ import { uploadImage } from "@/utils/uploadImage";
 
 export const POST = async (request) => {
   const { projectDetails, userId } = await request.json();
-  console.log(userId);
   console.log(projectDetails);
 
   try {

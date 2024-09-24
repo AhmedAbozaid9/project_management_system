@@ -1,14 +1,14 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 const ProjectsContext = createContext();
 
 const ProjectsContextProvider = ({ children }) => {
   const [currentProject, setCurrentProject] = useState();
 
-  const { data: projects } = useQuery({
+  const { data: projects, refetch } = useQuery({
     queryKey: ["projects"],
     queryFn: async () => {
       const { data } = await axios.get("/api/projects");
@@ -17,7 +17,7 @@ const ProjectsContextProvider = ({ children }) => {
   });
   return (
     <ProjectsContext.Provider
-      value={{ currentProject, setCurrentProject, projects }}
+      value={{ currentProject, setCurrentProject, projects, refetch }}
     >
       {children}
     </ProjectsContext.Provider>
