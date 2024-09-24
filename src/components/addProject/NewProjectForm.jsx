@@ -45,6 +45,7 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
             image,
           },
         });
+        toast.success("The project has been saved successfully");
       } else {
         toast.error("you are not logged in");
       }
