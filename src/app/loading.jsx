@@ -1,14 +1,8 @@
-"use client"
+import Loading from "@/components/general/Loading";
+import React from "react";
 
-import React from 'react';
-import {InfinitySpin} from "react-loader-spinner";
-
-const Loading = () => {
-    return (
-        <div className="flex h-full items-center justify-center">
-            <InfinitySpin color="#F8EDFF"/>
-        </div>
-    );
+const Page = () => {
+  return <Loading />;
 };
 
-export default Loading;
+export default Page;

@@ -11,8 +11,6 @@ export const connectToDB = async () => {
     console.log(process.env.MONGODB_URI);
     await mongoose.connect(process.env.MONGODB_URI, {
       dbName: "PMS",
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     });
     isConnected = true;
     console.log("mongoDB connected");
