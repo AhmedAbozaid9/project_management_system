@@ -2,9 +2,10 @@ import React, { useState, useRef } from "react";
 import { Input, Skeleton } from "@nextui-org/react";
 import Image from "next/image";
 import axios from "axios";
-
+import { useSession } from "next-auth/react";
 
 const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
+  const session = useSession();
   const [title, setTitle] = useState("");
   const [github, setGithub] = useState("");
   const [website, setWebsite] = useState("");
@@ -31,11 +32,14 @@ const NewProjectForm = ({ closeModal, setIsSubmitting }) => {
     setIsSubmitting(true);
     try {
       await axios.post("/api/projects/new", {
-        title,
-        date: new Date(),
-        github,
-        website,
-        image,
+        userId: session.data.user.id,
+        projectDetails: {
+          title,
+          date: new Date(),
+          github,
+          website,
+          image,
+        },
       });
     } catch (e) {
       console.log(e);

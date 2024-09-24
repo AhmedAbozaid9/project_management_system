@@ -1,22 +1,25 @@
 import { connectToDB } from "@/utils/database";
 import Project from "@/models/project";
-import {uploadImage} from "@/utils/uploadImage";
+import { uploadImage } from "@/utils/uploadImage";
 
 export const POST = async (request) => {
-  const projectDetails = await request.json();
+  const { projectDetails, userId } = await request.json();
+  console.log(userId);
+  console.log(projectDetails);
 
   try {
     connectToDB();
-   const image_url = await uploadImage(projectDetails.image)
-    console.log(image_url)
+    const image_url = await uploadImage(projectDetails.image);
     const newProject = new Project({
       ...projectDetails,
       image: image_url,
+      userId,
     });
     await newProject.save();
 
     return new Response(JSON.stringify(projectDetails), { status: 201 });
   } catch (e) {
+    console.log(e);
     return new Response("Failed to save the project", { status: 500 });
   }
 };

@@ -18,7 +18,6 @@ const ProjectSchema = new Schema({
 
   image: {
     type: String,
-    ref: "Image",
     required: true,
   },
   github: {
@@ -26,6 +25,11 @@ const ProjectSchema = new Schema({
   },
   website: {
     type: String,
+  },
+  userId: {
+    type: String,
+    ref: "User",
+    required: true,
   },
 });
 
