@@ -1,11 +1,12 @@
+import { URLSearchParams } from "url";
 import { connectToDB } from "@/utils/database";
 import Project from "@/models/project";
 
-const getStatusCount = async (status) => {
+const getStatusCount = async (status, userId) => {
   try {
     const result = await Project.aggregate([
       {
-        $match: { status: status },
+        $match: { status: status, userId },
       },
       {
         $group: {
@@ -26,13 +27,17 @@ const getStatusCount = async (status) => {
   }
 };
 
-export const GET = async () => {
+export const GET = async (req) => {
+  const url = new URL(req.url);
+  const searchParams = new URLSearchParams(url.search);
+  const userId = searchParams.get("userId");
+  console.log(userId);
   try {
     await connectToDB();
 
-    const notStarted = await getStatusCount("Not started");
-    const inProgress = await getStatusCount("In progress");
-    const done = await getStatusCount("Done");
+    const notStarted = await getStatusCount("Not started", userId);
+    const inProgress = await getStatusCount("In progress", userId);
+    const done = await getStatusCount("Done", userId);
 
     return new Response(JSON.stringify({ notStarted, inProgress, done }), {
       status: 200,

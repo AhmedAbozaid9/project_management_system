@@ -7,10 +7,12 @@ import SummaryProjectsTable from "@/components/Tables/SummaryProjectsTable";
 import LatestRepos from "@/components/dashboard/LatestRepos";
 import { useContext, useEffect, useState } from "react";
 import { ProjectsContext } from "@/contexts/ProjectsContext";
-
+import { AuthContext } from "@/contexts/authContext";
 const GITHUB_USERNAME = "AhmedAbozaid9";
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   const [latestRepos, setLatestRepos] = useState();
   const [summary, setSummary] = useState();
 
@@ -27,10 +29,14 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const { data } = await axios.get("/api/projects/summary");
+      const { data } = await axios.get("/api/projects/summary", {
+        params: {
+          userId: user?.id,
+        },
+      });
       setSummary(data);
     })();
-  }, []);
+  }, [user]);
 
   return (
     <main className="flex flex-1 w-full flex-col items-center">
