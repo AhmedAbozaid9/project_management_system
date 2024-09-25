@@ -21,15 +21,13 @@ const TopContent = ({
   setStatusFilter,
   length,
 }) => {
-  console.log(statusFilter);
-  console.log(statusOptions);
   const topContent = React.useMemo(() => {
     return (
       <div className="flex flex-col gap-4">
-        <div className="flex justify-between gap-3 items-end">
+        <div className="flex gap-5 items-center">
           <Input
             isClearable
-            className="w-full sm:max-w-[44%]"
+            className="w-full sm:max-w-[44%] "
             placeholder="Search by name..."
             startContent={<IoIosSearch />}
             value={filterValue}
