@@ -17,7 +17,7 @@ const SelectProject = () => {
         trigger: "bg-transparent data-hover:bg-transparent",
       }}
     >
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <SelectItem key={project._id} value={project.title}>
           {project.title}
         </SelectItem>

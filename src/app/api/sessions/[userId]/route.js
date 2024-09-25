@@ -40,7 +40,7 @@ export const GET = async (req, { params }) => {
 
     const totalTime = await getTotalTime(userId);
 
-    const totalCount = await Session.find({}).countDocuments();
+    const totalCount = await Session.find({ user: userId }).countDocuments();
 
     const startIndex = (page - 1) * sessionsPerPage;
     const sessions = await Session.find({ user: userId })

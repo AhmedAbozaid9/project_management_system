@@ -10,7 +10,6 @@ const ProjectsContext = createContext();
 
 const ProjectsContextProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [currentProject, setCurrentProject] = useState();
 
   const { data: projects, refetch } = useQuery({
